@@ -1,0 +1,242 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//
+// MIXINS
+//
+
+/////////////////////////////////////////////////////////////////////////
+// Table of contents
+/////////////////////////////////////////////////////////////////////////
+//
+//
+// - - ASPECT-RATIO-IMG
+// - - GRADIENT
+// - - FILTER
+// - - CLEARFIX
+// - - PLACEHOLDER TEXT
+//
+//
+/////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////////////////////////////
+// ASPECT-RATIO-IMG
+// -> @include aspect-ratio-img(16,9)
+/////////////////////////////////////////////////////////////////////////
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+    &:before {
+        display: block;
+        content: " ";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    .ratio {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+}
+
+@mixin aspect-ratio-content($width, $height) {
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+    &:before {
+        display: block;
+        content: " ";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    .body {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+}
+
+@mixin aspect-ratio-img($width, $height) {
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+    &:before {
+        display: block;
+        content: " ";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%,-50%);
+        // height: auto;
+    }
+
+}
+
+@mixin aspect-ratio-iframe($width, $height) {
+    position: relative;
+    overflow: hidden;
+    display: block;
+
+    &:before {
+        display: block;
+        content: " ";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    iframe {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+// GRADIENT
+// -> @include background-gradient(#fff,#eee);
+/////////////////////////////////////////////////////////////////////////
+
+@mixin background-gradient($color1, $color2) {
+    background: $color1;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
+    background: -webkit-linear-gradient(top, $color1, $color2);
+    background: -ms-linear-gradient(top, $color1, $color2);
+    background: linear-gradient($color1, $color2);
+}
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+// FILTER
+// -> @include filter(grayscale, 100%);
+/////////////////////////////////////////////////////////////////////////
+
+@mixin filter($gray, $sepia) {
+    -webkit-filter: grayscale($gray) sepia($sepia);
+    filter: grayscale($gray) sepia($sepia);
+}
+
+@mixin filter($filter-type, $filter-amount) {
+    -webkit-filter: $filter-type+unquote("(#{$filter-amount})");
+    -moz-filter: $filter-type+unquote("(#{$filter-amount})");
+    -ms-filter: $filter-type+unquote("(#{$filter-amount})");
+    -o-filter: $filter-type+unquote("(#{$filter-amount})");
+    filter: $filter-type+unquote("(#{$filter-amount})");
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+// CLEARFIX
+// -> @include clearfix;
+/////////////////////////////////////////////////////////////////////////
+
+@mixin clearfix {
+    zoom: 1;
+    &:before,
+    &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+}
+    &:after {
+        clear: both;
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+// PLACEHOLDER TEXT
+// -> @include placeholder-text-color(#000);
+// -> @include placeholder-text-transform(font-size);
+// -> @include placeholder-text-fadeOut();
+/////////////////////////////////////////////////////////////////////////
+
+
+/* - Placeholder text color - - */
+
+@mixin placeholder-text-color ($color) {
+    &:-moz-placeholder {
+        color: $color;
+    }
+    &::-moz-placeholder {
+        color: $color;
+    }
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+}
+
+
+/* - Placeholder text transform - - */
+
+@mixin placeholder-text-transform ($transform) {
+    &:-moz-placeholder {
+        text-transform: $transform;
+    }
+    &::-moz-placeholder {
+        text-transform: $transform;
+    }
+    &:-ms-input-placeholder {
+        text-transform: $transform;
+    }
+    &::-webkit-input-placeholder {
+        text-transform: $transform;
+    }
+}
+
+
+/* - Placeholder text fade  out - - */
+
+@mixin placeholder-text-fadeOut {
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+
+

@@ -1,0 +1,38 @@
+
+//
+// SITE VARIABLES
+//
+
+
+//  - - - COLORS
+
+$white: #fff !default;
+$black: #000 !default;
+
+$yellow: #ffe300!default;
+
+$grey: #a4a1a0!default;
+$gray: $grey;
+
+$link: $black;
+$link-hover: $black;
+$link-click: $black;
+
+
+
+// - - - FONTS
+
+$font-system: "-apple-system", BlinkMacSystemFont, "Apple Color Emoji", “Segoe UI”, Roboto, “Helvetica Neue”, Helvetica, Arial, sans-serif;
+
+
+$font-impact: Impact,Anton,Haettenschweiler,Franklin Gothic Bold,Charcoal,"Helvetica Inserat","Arial Black",sans-serif;
+$font-circular: CircularStd, Arial ,sans-serif;
+
+
+
+
+$body-font: $font-circular;
+$body-color: $black;
+
+$header-font: $font-impact;
+$header-color: $black;

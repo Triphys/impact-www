@@ -1,0 +1,41 @@
+
+//
+// SGD - PLACEHOLDER
+//
+
+
+.sgd-placeholder {
+
+  height: 50px;
+  background-color: $yellow;
+  margin-bottom: 1rem;
+  line-height: 50px;
+  text-align: center;
+  color: $black;
+  font-weight: bold;
+  font-family: $sgd-font-system;
+  position: relative;
+
+  &.-darker {
+    background: darken($yellow,3%);
+  }
+  &.-lighter {
+    background: lighten($yellow,4%);
+  }
+  &.pattern {
+    height: 64vh;
+    margin: 0;
+  }
+
+  .sgd-header-tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,.24);
+    color: rgba(255,255,255,.88);
+    text-transform: none;
+  }
+
+}

@@ -1,0 +1,211 @@
+
+//
+// SGD - HERO
+//
+
+  .sgd-s-hero {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: $yellow;
+
+    // - - - MODIFIERS
+
+    &.-cover {
+      padding: 12vh 0;
+      min-height: 87vh;
+    }
+
+
+    // - - - LOGO
+
+    svg {
+      width: 66vw;
+      height: 66vw;
+      max-width: 740px;
+      max-height: 640px;
+    }
+
+
+    // - - TYPOGRAPHY
+
+    .text {
+      text-align: left;
+      p {
+        font-size: 18px;
+        color: #3a5669;
+        line-height: 1.7;
+        margin-bottom: 1em;
+        &.preamble {
+          font-size: 22px;
+          line-height: 1.56;
+        }
+      }
+
+      strong {
+        &.header {
+          display: block;
+          font-size: 21px;
+          line-height: 1;
+          padding-bottom: .4em;
+          color: $black;
+          span {
+            font-weight: 300;
+            color: $black;
+          }
+        }
+      }
+
+      @media screen and (max-width: 767px)  {
+        > div:first-child {
+          margin-bottom: 24px;
+        }
+      }
+
+    }
+
+    .title {
+      font-family: $font-circular;
+      display: block;
+      font-weight: bold;
+      font-size: 28px;
+      color: $black;
+      margin: 8px 0 0;
+      text-transform: uppercase;
+      line-height: 1.1;
+      &.-sub {
+        font-weight: normal;
+        font-size: 18px;
+        margin: .256em 0 0;
+        color: $black;
+        font-weight: 400;
+        line-height: 1.4;
+        &.-in-text {
+          margin: 64px 40px;
+        }
+      }
+    }
+
+    .title-in-page {
+      font-family: $font-circular;
+      display: block;
+      font-weight: 300;
+      font-size: 40px;
+      color: $black;
+      margin: 0 0 40px;
+      line-height: 1.16;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      text-align: center;
+      &.-qoute{
+        font-weight: 400;
+        font-size: 36px;
+        font-family: $font-impact;
+        font-style: italic;
+        text-align: center;
+        line-height: 1.256;
+        text-transform: none;
+        letter-spacing: 0;
+        a {
+          font-size: 15px;
+          display: inline-block;
+          margin-top: 1em;
+          text-decoration: none;
+        }
+      }
+    }
+
+
+    // - - - LIST
+
+    ul {
+       padding: 0;
+       margin: 24px 0;
+    }
+
+    li {
+      list-style-type: none;
+      position: relative;
+      padding: 0 12px 12px 0;
+      font-size: 18px;
+
+      .icon {
+        position: absolute;
+        left: 0;
+        top: .18em;
+        fill: $black;
+        width: 22px;
+        height: 22px;
+        margin-left: -30px;
+      }
+
+      &.-done{
+        .icon {
+          fill: #00c963;
+        }
+      }
+
+      &.-pending{
+        color: #ccc;
+        .icon {
+          fill: #ccc;
+        }
+      }
+
+    }
+
+
+    // - - - FOOTER
+
+    &.-footer {
+      padding: 54px 0;
+      min-height: unset;
+      background-color: #1a1a1a;
+      svg {
+        fill: #4a4a4a;
+        width: 64px;
+        height: 64px;
+        transition: fill .375s ease-in-out;
+      }
+      .title {
+        color: #4a4a4a;
+        font-size: 22px;
+        transition: color .375s ease-in-out;
+        &.-sub {
+          color: $black;
+          font-size: 12px;
+          //transition: color .375s ease-in-out;
+        }
+      }
+
+    }
+
+
+    // - - - RESPONSIVE
+
+    @media screen and (min-width: 768px)  {
+
+      .title {
+        font-size: 48px;
+        &.-sub {
+          font-size: 26px;
+        }
+
+      }
+    }
+
+    @media screen and (min-width: 1280px)  {
+
+      .title {
+        font-size: 68px;
+        &.-sub {
+          font-size: 34px;
+        }
+
+      }
+
+    }
+
+  }
