@@ -80,6 +80,7 @@ export default {
 
     &.-border-both {
       .border-top {
+        display: block;
         margin-bottom: 28px; 
       }
       .border-bottom {
