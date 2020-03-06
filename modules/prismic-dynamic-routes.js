@@ -19,6 +19,8 @@ export default async function asyncModule (context, error, req) {
 	    const prismicRoutesRoutes = prismicRoutesRes.results.map((cont) => {
 		    return '/content/'+cont.uid
 		})
+
+		console.log(prismicRoutesRoutes);
 	    
 	    fse.outputJSON('./_data/prismic-routes.json', prismicRoutesRoutes, { spaces: 4 })
 

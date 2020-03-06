@@ -64,7 +64,7 @@ module.exports = {
   */
   modules: [
     // 'modules/debug-nuxt-hooks',
-    // 'modules/prismic-dynamic-routes',
+    'modules/prismic-dynamic-routes',
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
@@ -95,9 +95,9 @@ module.exports = {
   ** Generate
   */
 
-  // generate: {
-  //   routes: dynamicRoutes
-  // },
+  generate: {
+    routes: dynamicRoutes
+  },
 
   /*
 
