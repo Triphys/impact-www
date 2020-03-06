@@ -31,7 +31,7 @@ export default {
 
   .slice-impact-image {
     .content-image {
-      margin-bottom: 1.2em;
+      margin: 1.2em 0 1.8em;
     }
   }
 
