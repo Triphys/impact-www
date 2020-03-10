@@ -1,9 +1,8 @@
 <template>
-  <div class="impact-page-startpage impact-page">
+  <div class="impact-page-startpage impact-page" :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
 
-    <site-header />
-
-     <div class="impact-wrapper">
+    <!-- LOGO - BIG CENTERED -->
+    <div class="impact-wrapper"> 
       <figure>
         <svg version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              width="172px" height="49px" viewBox="0 0 172 49" style="enable-background:new 0 0 172 49;" xml:space="preserve">
@@ -26,7 +25,16 @@
         </svg>
       </figure>
     </div>
-  
+
+    <!-- SLIDER - BACKGROUND -->
+    <div class="impact-slider">
+      <div class="slider-body" :style="{ width: `${impSlidesWidth}`, left: `${impSlidePosition}` }">
+        <div class="slide" v-for="(slide,index) in impSlides" :key="index" >
+          <figure class="the-image" v-if="slide[1]"  :style="{ backgroundImage: `url(${slide[0]})` }"></figure>
+        </div>      
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -36,38 +44,140 @@
 import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
-import siteHeader from '~/components/site-header.vue'
-
 
 export default {
-
-  components: {
-    siteHeader
+  data() {
+    return {
+      impSlidesOld: false,
+      impSlideIndex: 0,
+      impSlidePosition: 0,
+      impSlidesWidth: 0,
+      impSlides: [],
+      impSlidesLength: 0,
+      impLogoColor: false,
+      impSlideLast: false,
+    }
   },
-  // async asyncData({ params, error, req }) {
-  //   try{
-  //     // Query to get API object
-  //     const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+  async asyncData({ params, error, req }) {
+    try{
+      // Query to get API object
+      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
 
-  //     // Query to get content
-  //     const prismicContent = await api.query(
-  //       Prismic.Predicates.at("document.type", "content"),
-  //       { orderings : '[my.content.last_publication_date desc]' }
-  //     )
+      // Query to get content
+      const prismicSettings = await api.query(
+        Prismic.Predicates.at("document.type", "settings")
+      )
+      const prismicMenu = await api.query(
+        Prismic.Predicates.at("document.type", "menu")
+      )
+      const prismicStartpage = await api.query(
+        Prismic.Predicates.at("document.type", "startpage")
+      )
 
-  //     // Returns data to be used in template
-  //     return {
-  //       allContent: prismicContent.results
-  //     }
-  //   } catch (e) {
-  //     // Returns error page
-  //     error({ statusCode: 404, message: 'Page not found' })
-  //   }
-  // },
+      // Returns data to be used in template
+      return {
+        menu: prismicMenu.results[0].data.body,
+        slides: prismicStartpage.results[0].data.body[0].items,
+        setfb: prismicSettings.results[0].data.facebook_url[0].text,
+        setin: prismicSettings.results[0].data.instagram_url[0].text
+      }
+    } catch (e) {
+      // Returns error page
+      error({ statusCode: 404, message: 'Page not found' })
+    }
+  },
+  methods: {
+
+    sliderSetup(slides){
+
+      let clone = false;
+      let _slides = slides;
+      let _slidesClean = [];
+
+      // The view model.
+      let vm = this;
+
+      _slides.forEach(function(item,index) {
+
+        let _item = []
+        let item_url = item.slide_image.url
+        let item_color = true
+
+        if (item_url === undefined) {
+          item_color = false
+        }
+
+        _item.push(item_url)
+        _item.push(item_color)
+
+        vm.impSlides.push(_item)
+        _slidesClean.push(_item)
+
+      });
+
+      clone = _slidesClean[0]
+      _slidesClean.push(clone)
+
+
+      /// HERE
+      this.impSlides = _slidesClean
+
+      // clone = this.impSlides[0]
+      // this.impSlides.push(clone)
+      // HERE
+
+      this.impSlidesWidth = this.impSlides.length * 100 + 'vw'
+      this.impSlidesLength = this.impSlides.length
+
+
+      // Start slider
+      setTimeout(() => this.next(), 5000); 
+
+    },
+
+    next(){
+      
+      // Slide index up one
+      this.impSlideIndex++
+
+      // Slider array length
+      let sl = this.impSlidesLength - 1 
+
+      // Setting 
+      this.impLogoColor = this.impSlides[this.impSlideIndex][1]
+      
+      if (this.impSlideIndex  === sl) {
+        this.impSlidePosition = this.impSlideIndex * -100 + 'vw'
+
+        // Removing "transition" and moving Slider to start postion. 
+        setTimeout(() => {
+          this.impSlideLast = true
+          this.impSlidePosition = '0vw'
+        }, 2500);
+
+        this.impSlideIndex = 0   
+        setTimeout(() => this.next(), 5000);  
+
+      } else {
+        this.impSlideLast = false
+        this.impSlidePosition = this.impSlideIndex * -100 + 'vw'
+        setTimeout(() => this.next(), 5000); 
+      }
+          
+    },
+       
+
+  },
+  mounted () {
+   this.sliderSetup(this.slides);
+  },
+  created () {
+   
+  }
+
 
 }
 </script>
-
 
 
 <style lang="scss">
@@ -79,6 +189,52 @@ export default {
     box-sizing: border-box;
     min-height: 100vh;
 
+    &.-logo-yellow {
+      .impact-wrapper svg {
+        fill: $yellow;
+      }
+    }
+
+    &.-logo-black {
+      .impact-wrapper svg {
+        fill: $black;
+      }
+    }
+
+    &.-slide-last  {
+      .impact-slider .slider-body {
+        transition: none!important
+      }      
+    }
+
+    .impact-slider {
+      overflow: hidden;
+      position: fixed;
+      background: $yellow;
+      top: 0;
+      width: 100vw;
+      left: 0;
+      height: 100vh;
+      z-index: 1;
+      .slider-body {
+        position: relative;
+        transition: all 1000ms ease-in-out;
+        
+      }
+      .slide {
+        width: 100vw;
+        height: 100vh;
+        float: left;
+   
+      }
+      .the-image {
+        width: 100vw;
+        height: 100vh;
+        background-position: center center;
+        background-size: cover;
+      }
+    }
+
     .impact-wrapper {
       width: 86vw;
       max-width: 920px;
@@ -87,14 +243,18 @@ export default {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      padding: 6vh 24px;
+      padding: 0 24px 10vh;
       flex-direction: column;
+      position: relative;
+      z-index: 2;
     }
+
     .impact-wrapper svg{
       fill: #000;
       width: 90%;
       height: auto;
       max-width: 690px;
+      transition: fill 1000ms ease-out;
     }
 
     figure {
@@ -102,8 +262,16 @@ export default {
       text-align: center;
       width: 100%;
       margin: 0;
-     
     }
+
+    @include VP1024 {
+      
+        .logo-link{
+          display: none;
+        }
+      
+    }
+
   }
 
 </style>
