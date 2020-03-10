@@ -194,10 +194,6 @@ export default {
 <style lang="scss">
 
   .impact-page-startpage{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
     height: 100vh;
 
     &.-logo-yellow {
@@ -250,12 +246,7 @@ export default {
       width: 86vw;
       max-width: 920px;
       min-width: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
       padding: 0 24px 10vh;
-      flex-direction: column;
       position: relative;
       z-index: 2;
     }
