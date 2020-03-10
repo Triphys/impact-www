@@ -14,7 +14,7 @@
 
 
 
-      <a  href="/" class="logo-link">
+      <a  href="/startpage" class="logo-link">
         <svg-icon class="logo" name="impact" />
       </a>
 
