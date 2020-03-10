@@ -41,11 +41,19 @@
 
       </ul> 
 
+      <!-- {{menuData[2].items[0].link.link_type}} -->
+      <!-- {{menuData[2].items[0].link.url}} -->
+      <!-- {{menuData[2].items[1].link.link_type}}
+      {{menuData[2].items[2].link.link_type}} -->
+      <!-- {{menuData[2].items[2].link.url}} -->
+
     </div>
 
     <div class="social-links">
-      <a :href="setfb" target="_blank"><svg-icon class="logo-icon" name="facebook" /></a>
-      <a :href="setin" target="_blank"><svg-icon class="logo-icon" name="instagram" /></a>
+
+      <a :href="sm.facebook_url[0].text" target="_blank"><svg-icon class="logo-icon" name="facebook" /></a>
+      <a :href="sm.instagram_url[0].text" target="_blank"><svg-icon class="logo-icon" name="instagram" /></a>
+      
     </div>
 
   </div>
@@ -59,13 +67,10 @@
 
 export default {
   name: 'site-header',
-  props: ['menu','setfb','setin'],
-  components: {
-  },
   data() {
     return {
       showSubMenu: undefined,
-      sm: this.settings,
+      sm: this.$store.getters.getSettingsData,
       menuData: this.$store.getters.getMenuData,
       menuClean: [],
       isMenuOpen: this.$store.getters.getMenu,
