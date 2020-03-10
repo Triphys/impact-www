@@ -1,5 +1,5 @@
 <template>
-  <div class="impact-page-startpage impact-page" :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
+  <div class="impact-page-startpage " :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
 
      <!-- HEADER - SITE -->
     <site-header />
