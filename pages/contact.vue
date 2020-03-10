@@ -2,6 +2,10 @@
 
   <div class="impact-page impact-page-contact site-grid -border-bottom" >
 
+
+    <!-- HEADER - SITE -->
+    <site-header />
+
     <!-- HEADER / PAGE TITLE -->
 
       <section class="page-impact-header" v-if="document.page_title[0].text">
@@ -50,8 +54,13 @@
 import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
+import siteHeader from '~/components/site-header.vue'
+
 export default {
   name: 'impact-page-contact',
+  components: {
+      siteHeader
+    },
   data() {
     return {
       impLoc: [{ "latitude": 59.299440, "longitude": 18.015775 }],
