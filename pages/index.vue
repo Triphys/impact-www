@@ -27,7 +27,7 @@
       </figure>
 
       <div class="impact-text">
-        <h2>Hemsidan under konstruktion. <br>
+        <h2 class="text-h2">Hemsidan under konstruktion. <br>
           Schema och info finns p&aring; Facebook. <br>
           F&ouml;lj oss p&aring; Facebook och Instagram.</h2>
       </div>
@@ -57,9 +57,11 @@
 
 
 <style lang="scss">
-.p-placeholder {
-     font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal, Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
-}
+    .p-placeholder {
+         font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal, Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+    }
+
+
     body {
       background: $yellow;
       background-size: cover;
@@ -69,9 +71,11 @@
       margin: 0;
    
     }
+
     * {
       box-sizing: border-box;
     }
+    
     .flex {
       display: flex;
       align-items: center;
@@ -125,28 +129,27 @@
       margin: 0;
      
     }
-    h2 {
+    h2.text-h2 {
       margin-bottom: 22px;
       font-size: 18px;
       margin: .7em 0 1.2em;
       line-height: 1.256;
     }
     
-
     @media screen and (min-width: 480px)  {
-      h2 {
+      h2.text-h2 {
         font-size: 22px;
       }
     }
 
     @media screen and (min-width: 600px)  {
-      h2 {
+      h2.text-h2 {
         font-size: 26px;
       }
     }
 
     @media screen and (min-width: 768px)  {
-      h2 {
+      h2.text-h2 {
         font-size: 30px;
       }
       .impact-sm svg {
