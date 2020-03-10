@@ -1,6 +1,10 @@
 <template>
   <div class="impact-page-startpage impact-page" :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
 
+     <!-- HEADER - SITE -->
+    <site-header />
+
+
     <!-- LOGO - BIG CENTERED -->
     <div class="impact-wrapper"> 
       <figure>
@@ -44,8 +48,14 @@
 import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
+import siteHeader from '~/components/site-header.vue'
+
 
 export default {
+
+  components: {
+    siteHeader
+  },
   data() {
     return {
       impSlidesOld: false,
@@ -64,22 +74,23 @@ export default {
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
 
       // Query to get content
-      const prismicSettings = await api.query(
-        Prismic.Predicates.at("document.type", "settings")
-      )
-      const prismicMenu = await api.query(
-        Prismic.Predicates.at("document.type", "menu")
-      )
+      // const prismicSettings = await api.query(
+      //   Prismic.Predicates.at("document.type", "settings")
+      // )
+      // const prismicMenu = await api.query(
+      //   Prismic.Predicates.at("document.type", "menu")
+      // )
+      
       const prismicStartpage = await api.query(
         Prismic.Predicates.at("document.type", "startpage")
       )
 
       // Returns data to be used in template
       return {
-        menu: prismicMenu.results[0].data.body,
-        slides: prismicStartpage.results[0].data.body[0].items,
-        setfb: prismicSettings.results[0].data.facebook_url[0].text,
-        setin: prismicSettings.results[0].data.instagram_url[0].text
+        // menu: prismicMenu.results[0].data.body,
+        slides: prismicStartpage.results[0].data.body[0].items
+        // setfb: prismicSettings.results[0].data.facebook_url[0].text,
+        // setin: prismicSettings.results[0].data.instagram_url[0].text
       }
     } catch (e) {
       // Returns error page

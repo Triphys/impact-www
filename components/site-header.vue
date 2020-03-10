@@ -2,11 +2,6 @@
 
   <div class="site-header" :class="{'-no-logo' : this.$route.name === 'startpage'}">
 
-    <!-- <div class="site-home" @click="closeMenu">
-      <nuxt-link to="/" ><svg-icon class="logo" name="activetalents-filled" /></nuxt-link>
-    </div> -->
-
-
     <div class="menu-toggle" @click="toggleMenu">
       <div class="burger" >
         <span></span>
@@ -15,67 +10,37 @@
       </div>
     </div>
 
-    <!-- {{menu}}<br><br> -->
-
-
     <div class="menu">
-      <!-- <ul @click="navigateMenu"> -->
-        <a  href="/" class="logo-link">
-          <svg-icon class="logo" name="impact" />
-        </a>
+
+
+
+      <a  href="/" class="logo-link">
+        <svg-icon class="logo" name="impact" />
+      </a>
+
       <ul>
+        
+        <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu}"> 
+          <!-- {{item}} -->
+          <template v-if="item[1] !== '/undefined'">
+            <a :href="item[1]" >{{item[0]}}</a>
+          </template>
+          <template v-else >
+            <div @click="toggleSubMenu(item[2])"> {{item[0]}} </div>
+          </template>
 
-        <li><div>Träning</div>
-
-          <ul class="sub">
-            <li>
-              <a href="/">Thaiboxning</a>
-            </li>
-            <li>
-              <a href="/">PT</a>
-            </li>
-          </ul>
-
-        </li>
-        <li>
-            <a href="/">Schema</a>
-        </li>
-        <li>
-            <a href="/">Priser</a>
-        </li>
-        <li>
-            <a href="/">Om Oss</a>
-        </li>
-        <li>
-            <a href="/">Hitta Hit/Kontak</a>
-        </li>
-     
-
-       <!--  <li v-for="(item, index) in menu" :key="'i-' + index"> -->
-
-<!--           <br>
-          {{item.primary.label}}
-          <prismic-link :field="item.primary.link">{{item.primary.label[0].text}}</prismic-link>
-
-          <br>
-          <br> -->
-          <!-- <a :href="item.href"></a> -->
-     <!--      {{item.items}} <br>
-          <br>
-
-          <div v-for="(item2, index) in item.items" :key="'a-' + index">
-            {{item2.link_3.uid}} <br><br>
-          </div> -->
+          <template v-if="item[4]">
+            <ul class="sub">
+              <li v-for="(subitem, index) in item[4]" :key="'i-' + index">
+                <a :href="subitem[1]" >{{subitem[0]}}</a>
+              </li>
+            </ul>
+          </template>
+         
         </li>
 
-        <!--   
-          <li><nuxt-link  to="/content/mahatma-gandhi" >Gandhi</nuxt-link></li>
-          <li><nuxt-link  to="/content/nelson-mandela" >Mandela</nuxt-link></li> 
-          <li><nuxt-link  to="/event" >Event</nuxt-link></li>
-          <li><nuxt-link  to="/contact" >Contact</nuxt-link></li> 
-        -->
+      </ul> 
 
-      </ul>
     </div>
 
     <div class="social-links">
@@ -99,29 +64,100 @@ export default {
   },
   data() {
     return {
+      showSubMenu: undefined,
       sm: this.settings,
+      menuData: this.$store.getters.getMenuData,
+      menuClean: [],
       isMenuOpen: this.$store.getters.getMenu,
     };
   },
   methods: {
+    clean(links){
+
+      let _links = links;
+
+      // The view model.
+      let vm = this;
+
+      _links.forEach(function(item,index) {
+
+        let _item = []
+        let _item_sub = []
+        let item_url = false
+        let item_sub_url = false
+        let item_sub_text = false
+        let item_text = item.primary.label[0].text
+        let item_id = index + 1
+        let item_sub = false
+
+        if (item.primary.link.type === 'content') {
+          item_url = '/' + item.primary.link.type + '/' + item.primary.link.slug 
+        } else {
+          item_url =  '/' + item.primary.link.type
+        }
+
+        // ITEM - Level 1
+        _item.push(item_text)
+        _item.push(item_url)
+        _item.push(item_id)
+        _item.push(item_sub)
+
+
+        // SUB MENU
+
+        if (item.items[0]) {
+          item_sub = item.items
+
+           item.items.forEach(function(item,index) {
+              let _this_sub = []
+              item_sub_text = item.sub_menu_link_label[0].text
+  
+              if (item.link.type === 'content') {
+                item_sub_url = '/' + item.link.type + '/' + item.link.slug 
+              } else {
+                item_sub_url =  '/' + item.link.type
+              }
+
+              // THIS
+              _this_sub.push(item_sub_text)
+              _this_sub.push(item_sub_url)
+
+              // SUB ITEM
+              _item_sub.push(_this_sub)
+
+          });
+
+
+          // ITEM - Level 2
+          _item.push(_item_sub)
+
+        }
+
+        // TO MENU CLEAN
+        vm.menuClean.push(_item)
+
+      });
+
+    },
     toggleMenu: function(){
       this.isMenuOpen = !this.isMenuOpen;
+      this.showSubMenu = 0
       this.$store.commit("setMenu",this.isMenuOpen)
     },
-    closeMenu: function(){
-      this.$store.commit("setMenu",false)
+    toggleSubMenu: function(id){
+        if (id === this.showSubMenu) {
+          this.showSubMenu = 0
+        } else {
+          this.showSubMenu = id
+        }
     },
-    // navigateMenu: function(){
-    //   this.$store.commit("setMenuNavigate",true)
-    //   setTimeout(() => {
-    //     this.$store.commit("setMenuNavigate",false)
-    //     this.closeMenu();
-    //   }, 425);
+    closeMenu: function(){
 
-    // }
+      this.$store.commit("setMenu",false)
+    }
   },
   mounted() {
-    console.log(this.$route.name)
+    this.clean(this.menuData)
   }
 }
 </script>
@@ -224,15 +260,20 @@ export default {
        border-top: 1px solid $black;
     }
 
-    ul.sub {
-      display: none;
-      &.-show {
+    li.-show {
+      ul.sub {
         display: block;
       }
+    }
+
+    ul.sub {
+      display: none;
+      
       a {
         color: $grey;
         border-bottom: none;
         padding-bottom: 0;
+
       }
       padding-bottom: 14px;
       border-bottom: 1px solid $black;
@@ -340,8 +381,24 @@ export default {
     }
 
     .menu {
-      
+      overflow: visible;
 
+      li.-show {
+        display: inline-block!important;
+        position: relative;
+
+        ul.sub {
+          position: absolute;
+          top: 2em;
+          left: -10px;
+          text-align: left;
+          background-color: $yellow;
+          a {
+            white-space: nowrap;
+          }
+        }
+      }
+      
       .logo-link {
          position: absolute;
          top: 18px;

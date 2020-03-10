@@ -57,6 +57,9 @@
 
 
 <style lang="scss">
+.p-placeholder {
+     font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal, Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+}
     body {
       background: $yellow;
       background-size: cover;
@@ -64,7 +67,7 @@
       box-sizing: border-box;
       padding: 0;
       margin: 0;
-      font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal, Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+   
     }
     * {
       box-sizing: border-box;

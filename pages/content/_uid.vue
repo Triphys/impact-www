@@ -1,6 +1,10 @@
 <template>
   <div class="impact-page-content impact-page" :data-wio-id="documentId">
    
+
+    <!-- HEADER - SITE -->
+    <site-header />
+
     <!-- HEADER / PAGE TITLE -->
 
       <section class="page-impact-header" v-if="document.page_title[0].text">
@@ -25,11 +29,13 @@
 import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
+import siteHeader from '~/components/site-header.vue'
 import siteSlices   from '~/components/site-slices.vue'
 
 export default {
   name: 'impact-page-content',
     components: {
+      siteHeader,
       siteSlices
     },
   head () {

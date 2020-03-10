@@ -3,6 +3,7 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
 export const state = () => ({
+  menuData: false,
   menu: false,
   orientation: false,
   menuNavigate: false,
@@ -12,6 +13,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setMenuData(state, res) {
+    state.menuData = res
+  },
   setMenu(state, res) {
     state.menu = res
   },
@@ -36,7 +40,28 @@ export const actions = {
   
   async nuxtServerInit ({ commit }, { req }) {
 
+    console.log('nuxtServerInit');
 
+    // Query to get API object
+      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+
+      //Query to get content
+      // const prismicSettings = await api.query(
+      //   Prismic.Predicates.at("document.type", "settings")
+      // )
+
+      const prismicMenu = await api.query(
+        Prismic.Predicates.at("document.type", "menu")
+      )
+
+      console.log('nuxtServerInit Menu -> ' , prismicMenu.results[0].data.body);
+
+
+    commit('setMenuData', prismicMenu.results[0].data.body)
+
+  },
+  setMenuData(vuexContext, res) {
+    vuexContext.commit('setMenuData', res)
   },
   setMenu(vuexContext, res) {
     vuexContext.commit('setMenu', res)
@@ -59,6 +84,9 @@ export const actions = {
 }
 
 export const getters = {
+  getMenuData(state) {
+    return state.menuData
+  },
   getMenu(state) {
     return state.menu
   },
