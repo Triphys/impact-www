@@ -197,7 +197,7 @@ export default {
         display: block;
         margin-bottom: 7px;
         background: $black;
-        transition: all .325s ease-out;
+        transition: all .275s ease-out;
         position: relative;
         width: 100%;
         margin-left: auto;
@@ -314,7 +314,7 @@ export default {
           &:nth-child(2) {
             width: 0;
             opacity: 0;
-            transition: all .275s ease-out;
+            transition: all .225s ease-out;
 
           }
           &:nth-child(3) {

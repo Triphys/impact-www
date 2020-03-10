@@ -80,7 +80,7 @@ export default {
       // const prismicMenu = await api.query(
       //   Prismic.Predicates.at("document.type", "menu")
       // )
-      
+
       const prismicStartpage = await api.query(
         Prismic.Predicates.at("document.type", "startpage")
       )
@@ -229,7 +229,7 @@ export default {
       z-index: 1;
       .slider-body {
         position: relative;
-        transition: all 1000ms ease-in-out;
+        transition: all 675ms ease-in-out;
         
       }
       .slide {
@@ -265,7 +265,7 @@ export default {
       width: 90%;
       height: auto;
       max-width: 690px;
-      transition: fill 1000ms ease-out;
+      transition: fill 675ms ease-out;
     }
 
     figure {
@@ -279,6 +279,15 @@ export default {
       
         .logo-link{
           display: none;
+        }
+
+        .impact-wrapper svg{
+          transition: fill 1000ms ease-out;
+        }
+        .impact-slider {
+          .slider-body {
+            transition: all 1000ms ease-in-out;
+          }
         }
       
     }
