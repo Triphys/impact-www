@@ -195,6 +195,8 @@ export default {
 
   .impact-page-startpage{
     height: 100vh;
+    overflow: hidden;
+    
 
     &.-logo-yellow {
       .impact-wrapper svg {
@@ -247,7 +249,10 @@ export default {
       max-width: 920px;
       min-width: 320px;
       padding: 0 24px 10vh;
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
       z-index: 2;
     }
 
