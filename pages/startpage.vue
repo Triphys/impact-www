@@ -198,7 +198,7 @@ export default {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    min-height: 100vh;
+    height: 100vh;
 
     &.-logo-yellow {
       .impact-wrapper svg {
