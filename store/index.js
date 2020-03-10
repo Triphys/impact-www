@@ -44,23 +44,18 @@ export const actions = {
   
   async nuxtServerInit ({ commit }, { req }) {
 
-    console.log('nuxtServerInit');
+    // console.log('nuxtServerInit');
 
     // Query to get API object
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
 
-      //Query to get content
+    //Query to get content
       const prismicSettings = await api.query(
         Prismic.Predicates.at("document.type", "settings")
       )
-
       const prismicMenu = await api.query(
         Prismic.Predicates.at("document.type", "menu")
       )
-
-      console.log('nuxtServerInit Menu -> ' , prismicSettings.results[0].data);
-      // console.log('nuxtServerInit Menu -> ' , prismicSettings.results[0].data.body);
-
 
     commit('setMenuData', prismicMenu.results[0].data.body)
     commit('setSettingsData', prismicSettings.results[0].data)
