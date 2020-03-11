@@ -44,7 +44,7 @@ export const actions = {
   
   async nuxtServerInit ({ commit }, { req }) {
 
-    // console.log('nuxtServerInit');
+    //console.log('nuxtServerInit');
 
     // Query to get API object
       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
@@ -59,6 +59,9 @@ export const actions = {
 
     commit('setMenuData', prismicMenu.results[0].data.body)
     commit('setSettingsData', prismicSettings.results[0].data)
+
+    //console.log(prismicMenu.results[0].data.body);
+    //console.log(prismicSettings.results[0].data);
 
   },
   setMenuData(vuexContext, res) {
