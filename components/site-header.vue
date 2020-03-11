@@ -2,6 +2,10 @@
 
   <div class="site-header" :class="{'-no-logo' : this.$route.name === 'startpage'}">
 
+    <a  href="/startpage" class="logo-link">
+      <svg-icon class="logo" name="impact" />
+    </a>
+
     <div class="menu-toggle" @click="toggleMenu">
       <div class="burger" >
         <span></span>
@@ -12,11 +16,8 @@
 
     <div class="menu">
 
-      <a  href="/startpage" class="logo-link">
-        <svg-icon class="logo" name="impact" />
-      </a>
-
       <ul>
+
         
         <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu}"> 
           <!-- {{item}} -->
@@ -24,13 +25,13 @@
             <a :href="item[1]" >{{item[0]}}</a>
           </template>
           <template v-else >
-            <div @click="toggleSubMenu(item[2])"> {{item[0]}} </div>
+            <div @click.prevent="toggleSubMenu(item[2])">{{item[0]}}</div>
           </template>
 
           <template v-if="item[4]">
             <ul class="sub">
               <li v-for="(subitem, index) in item[4]" :key="'i-' + index">
-                <a :href="subitem[1]" >{{subitem[0]}}</a>
+                <a :href="subitem[1]" >{{subitem[0]}} </a>
               </li>
             </ul>
           </template>
@@ -62,6 +63,7 @@ export default {
   data() {
     return {
       showSubMenu: undefined,
+      activeLink: this.$store.getters.getActiveLink,
       sm: this.$store.getters.getSettingsData,
       menuData: this.$store.getters.getMenuData,
       menuClean: [],
@@ -158,6 +160,12 @@ export default {
           this.showSubMenu = id
         }
     },
+    setActiveLink: function(id){
+    
+        this.$store.commit("setActiveLink", id)
+        console.log(id)
+      
+    },
     closeMenu: function(){
 
       this.$store.commit("setMenu",false)
@@ -226,28 +234,39 @@ export default {
     }
   }
 
+  .logo-link {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .logo {
+    width: 100px;
+    height: 33px;
+    margin-top: 7px;
+    &:hover {
+      fill: $grey;
+      cursor: pointer;
+    }
+  }
+
   .menu {
     position: absolute;
-    visibility: hidden;
-    z-index: -1;
+    z-index: 1;
     top:0;
-    height: 100vh;
+    height: 52px;
     width: 100%;
     overflow: scroll;
-    opacity: 0;
+    opacity: 1;
     background: $yellow;
     padding: 10px 24px 24px;
     text-align: center;
-
-    .logo {
-      width: 100px;
-      height: 33px;
-      margin-top: 7px;
-      &:hover {
-        fill: $grey;
-        cursor: pointer;
-      }
+    ul {
+      display: none;
     }
+
     ul a, 
     ul div {
       display: block;
@@ -257,13 +276,22 @@ export default {
       font-family: $font-impact;
       border-bottom: 1px solid $black;
       padding: 11px 0 12px;
-      &:hover {
-        color: $grey;
+      color: $grey;
+      .impact-page-startpage & {
+        color: $black;
       }
+      &:hover {
+        color: darken($grey, 8);
+        .impact-page-startpage & {
+          color: lighten($black,44);
+        }
+      }
+
+
     }
 
     > ul {
-       margin: 21px 0;
+       margin: 50px 0 21px;
        border-top: 1px solid $black;
     }
 
@@ -273,14 +301,23 @@ export default {
       }
     }
 
+    li.-active {
+      > a, 
+      > div {
+        color: $black;
+        &:hover {
+          color: $black;
+        }
+      }
+
+    }
+
     ul.sub {
       display: none;
-      
       a {
         color: $grey;
         border-bottom: none;
         padding-bottom: 0;
-
       }
       padding-bottom: 14px;
       border-bottom: 1px solid $black;
@@ -288,7 +325,6 @@ export default {
   }
 
   ul {
-  
     text-align: center;
     padding: 0;
     margin: 0;
@@ -297,11 +333,7 @@ export default {
       margin: 0;
       padding: 0;
       list-style-type: none;
-
     }
-
-
-
   }
 
   .-menu-open &{
@@ -322,7 +354,6 @@ export default {
             width: 0;
             opacity: 0;
             transition: all .225s ease-out;
-
           }
           &:nth-child(3) {
             width: 100%;
@@ -345,8 +376,10 @@ export default {
 
     .menu {
       opacity: 1;
-      visibility: visible;
-      z-index: 4;
+      height: 100vh;
+      > ul {
+        display: block;
+      }
     }
 
   }
@@ -368,6 +401,8 @@ export default {
       display: block;
       float: right;
       margin: 14px 21px 0 0;
+      position: relative;
+      z-index: 3;
       svg {
         width: 40px;
         height: 40px;
@@ -387,8 +422,26 @@ export default {
       display: none;
     }
 
+    .logo-link {
+      position: absolute;
+      top: 18px;
+      left: 21px;
+      transform: translateX(0);
+    }
+
+    .logo {
+      margin-top: 0;
+      width: 120px;
+      height: 38px;
+    }
+
     .menu {
       overflow: visible;
+      height: auto;
+
+      > ul {
+        display: block;
+      }
 
       li.-show {
         display: inline-block!important;
@@ -409,20 +462,6 @@ export default {
         }
       }
       
-      .logo-link {
-         position: absolute;
-         top: 18px;
-         left: 21px;
-      }
-
-      .logo {
-       
-        margin-top: 0;
-        
-        width: 120px;
-        height: 38px;
-      }
-
       display: block;
       visibility: visible;
       opacity: 1;
@@ -432,6 +471,9 @@ export default {
         display: inline-block;
         margin-left: 10px;
         margin-right: 10px;
+        li {
+          display: block;
+        }
       }
       ul a,
       ul div  {
