@@ -12,8 +12,6 @@
 
     <div class="menu">
 
-
-
       <a  href="/startpage" class="logo-link">
         <svg-icon class="logo" name="impact" />
       </a>
@@ -90,7 +88,11 @@ export default {
         let item_sub = false
 
         if (item.primary.link.type === 'content') {
-          item_url = '/' + item.primary.link.type + '/' + item.primary.link.slug 
+          item_url = '/' + item.primary.link.type + '/' + item.primary.link.uid
+        } else if (item.primary.link.type === 'contact') {
+          item_url = '/' + item.primary.link.uid
+        } else if (item.primary.link.type === 'Media' || (item.primary.link.type === 'Web')) {
+          item_url = item.primary.link.url
         } else {
           item_url =  '/' + item.primary.link.type
         }
@@ -101,20 +103,24 @@ export default {
         _item.push(item_id)
         _item.push(item_sub)
 
-
         // SUB MENU
 
-        if (item.items[0]) {
+        if (item.items[0] !== undefined) {
+
           item_sub = item.items
 
-           item.items.forEach(function(item,index) {
+          item.items.forEach(function(item,index) {
+
               let _this_sub = []
-              item_sub_text = item.sub_menu_link_label[0].text
-  
+
               if (item.link.type === 'content') {
-                item_sub_url = '/' + item.link.type + '/' + item.link.slug 
+                 item_sub_url = '/' + item.link.type + '/' + item.link.uid
+                 item_sub_text = item.sub_menu_link_label[0].text
+              } else if (item.link.type === 'contact') {
+                item_sub_url = item.link.uid
               } else if (item.link.link_type === 'Media' || (item.link.link_type === 'Web')) {
                 item_sub_url = item.link.url 
+                item_sub_text = item.sub_menu_link_label[0].text
               } else {
                 item_sub_url =  '/' + item.link.type
               }
