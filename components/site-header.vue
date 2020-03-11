@@ -41,12 +41,6 @@
 
       </ul> 
 
-      <!-- {{menuData[2].items[0].link.link_type}} -->
-      <!-- {{menuData[2].items[0].link.url}} -->
-      <!-- {{menuData[2].items[1].link.link_type}}
-      {{menuData[2].items[2].link.link_type}} -->
-      <!-- {{menuData[2].items[2].link.url}} -->
-
     </div>
 
     <div class="social-links">
@@ -119,6 +113,8 @@ export default {
   
               if (item.link.type === 'content') {
                 item_sub_url = '/' + item.link.type + '/' + item.link.slug 
+              } else if (item.link.link_type === 'Media' || (item.link.link_type === 'Web')) {
+                item_sub_url = item.link.url 
               } else {
                 item_sub_url =  '/' + item.link.type
               }
@@ -398,6 +394,9 @@ export default {
           left: -10px;
           text-align: left;
           background-color: $yellow;
+          .impact-page-startpage &{
+            background-color: transparent;
+          }
           a {
             white-space: nowrap;
           }
