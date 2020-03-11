@@ -142,7 +142,7 @@ export default {
 
 
       // Start slider
-      setTimeout(() => this.next(), 5000); 
+      setTimeout(() => this.next(), 3000); 
 
     },
 
@@ -167,12 +167,12 @@ export default {
         }, 2500);
 
         this.impSlideIndex = 0   
-        setTimeout(() => this.next(), 5000);  
+        setTimeout(() => this.next(), 3000);  
 
       } else {
         this.impSlideLast = false
         this.impSlidePosition = this.impSlideIndex * -100 + 'vw'
-        setTimeout(() => this.next(), 5000); 
+        setTimeout(() => this.next(), 3000); 
       }
           
     },
