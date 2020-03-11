@@ -3,6 +3,7 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
 export const state = () => ({
+  activeLink: 1,
   menuData: false,
   settingsData: false,
   menu: false,
@@ -14,6 +15,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setActiveLink(state, res) {
+    state.activeLink = res
+  },
   setMenuData(state, res) {
     state.menuData = res
   },
@@ -64,6 +68,9 @@ export const actions = {
     //console.log(prismicSettings.results[0].data);
 
   },
+  setActiveLink(vuexContext, res) {
+    vuexContext.commit('setActiveLink', res)
+  },
   setMenuData(vuexContext, res) {
     vuexContext.commit('setMenuData', res)
   },
@@ -91,6 +98,9 @@ export const actions = {
 }
 
 export const getters = {
+  getActiveLink(state) {
+    return state.activeLink
+  },
   getMenuData(state) {
     return state.menuData
   },
