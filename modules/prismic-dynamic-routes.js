@@ -12,17 +12,27 @@ export default async function asyncModule (context, error, req) {
 		// GET
 	    const api = await Prismic.getApi(process.env.PRISMIC_API, {req})
 
-	    const prismicRoutesRes = await api.query([
+
+	    const prismicContentRes = await api.query([
 	        Prismic.Predicates.at('document.type', 'content')
 	    ])
-
-	    const prismicRoutesRoutes = prismicRoutesRes.results.map((cont) => {
+	    const prismicContent = prismicContentRes.results.map((cont) => {
 		    return '/content/'+cont.uid
 		})
 
-		console.log(prismicRoutesRoutes);
+
+		const prismicContactRes = await api.query([
+	        Prismic.Predicates.at('document.type', 'contact')
+	    ])
+	    const prismicContact = prismicContactRes.results.map((cont) => {
+		    return '/'+cont.uid
+		})
+
+		const routes = prismicContent.concat(prismicContact)
+
+		console.log(routes);
 	    
-	    fse.outputJSON('./_data/prismic-routes.json', prismicRoutesRoutes, { spaces: 4 })
+	    fse.outputJSON('./_data/prismic-routes.json', routes, { spaces: 4 })
 
     } catch (e) {
       console.log(e)
