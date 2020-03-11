@@ -4,46 +4,56 @@
 
 
     <!-- HEADER - SITE -->
-    <site-header />
+        
+        <site-header />
+
 
     <!-- HEADER / PAGE TITLE -->
 
-      <section class="page-impact-header" v-if="document.page_title[0].text">
-        <div class="gc">
-          <div class="g-12 header">
-            <h2 class="impact-header">
-              {{document.page_title[0].text}}
-            </h2>
+        <section class="page-impact-header" v-if="document.page_title[0].text">
+          <div class="gc">
+            <div class="g-12 header">
+              <h2 class="impact-header">
+                {{document.page_title[0].text}}
+              </h2>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       
 
-    <div class="gc">
+    <!-- MAP -->
 
-      <div class="g-6 page-map">
-        <GMap
-          ref="gMap"
-          :center="{lat: impLoc[0].latitude, lng: impLoc[0].longitude}"
-          :options="{fullscreenControl: true, streetViewControl: true, mapTypeControl: true, zoomControl: true, gestureHandling: 'cooperative'}"
-          :zoom="13"
-        >
-          <GMapMarker
-            v-for="location in impLoc"
-            :key="location.id"
-            :position="{lat: location.latitude, lng: location.longitude}"
-          >
-          </GMapMarker>
-        </GMap>
-      </div>
+        <div class="gc">
 
-      <div class="g-6 page-content">
-        <prismic-rich-text :field="document.adress"/>
-      </div>
+          <div class="g-6 page-map">
+            <GMap
+              ref="gMap"
+              :center="{lat: impLoc[0].latitude, lng: impLoc[0].longitude}"
+              :options="{fullscreenControl: true, streetViewControl: true, mapTypeControl: true, zoomControl: true, gestureHandling: 'cooperative'}"
+              :zoom="13"
+            >
+              <GMapMarker
+                v-for="location in impLoc"
+                :key="location.id"
+                :position="{lat: location.latitude, lng: location.longitude}"
+              >
+              </GMapMarker>
+            </GMap>
+          </div>
 
-      <div class="g-12 border-bottom border"></div>
+          <div class="g-6 page-content">
+            <prismic-rich-text :field="document.adress"/>
+          </div>
 
-    </div>  
+          <div class="g-12 border-bottom border"></div>
+
+        </div>  
+
+
+    <!-- FOOTER - SITE -->
+
+        <site-footer />
+
 
   </div>
 
@@ -55,11 +65,13 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
 import siteHeader from '~/components/site-header.vue'
+import siteFooter from '~/components/site-footer.vue'
 
 export default {
   name: 'impact-page-contact',
   components: {
-      siteHeader
+      siteHeader,
+      siteFooter
     },
   data() {
     return {

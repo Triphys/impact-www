@@ -3,7 +3,9 @@
    
 
     <!-- HEADER - SITE -->
-    <site-header />
+
+      <site-header />
+
 
     <!-- HEADER / PAGE TITLE -->
 
@@ -17,9 +19,14 @@
         </div>
       </section>
       
+
     <!-- SLICES / CONTENT - - From Prismic -->
 
       <site-slices :slicesRaw="slices"/>
+
+
+    <!-- FOOTER - SITE -->
+        <site-footer />
 
   </div>
 </template>
@@ -30,12 +37,14 @@ import Prismic from "prismic-javascript"
 import PrismicConfig from "~/prismic.config.js"
 
 import siteHeader from '~/components/site-header.vue'
+import siteFooter from '~/components/site-footer.vue'
 import siteSlices   from '~/components/site-slices.vue'
 
 export default {
   name: 'impact-page-content',
     components: {
       siteHeader,
+      siteFooter,
       siteSlices
     },
   head () {
