@@ -22,12 +22,33 @@ export default {
 <style lang="scss" >
 
   .site-footer {
-    background-color: darken($yellow, 5);
+    // background-color: darken($yellow, 5);
     padding: 56px 21px;
     text-align: center;
-    .logo-footer svg {
-      width: 100px;
-      height: 33px;
+    .logo-footer {
+      position: relative;
+      width: auto;
+      display: inline-block;
+      svg {
+        width: 100px;
+        height: 33px;
+      }
+      &:before,
+      &:after {
+        content: '';
+        height: 1px;
+        width: 50px;
+        background-color: $black;
+        position: absolute;
+        z-index: 1;
+        top: 49%;
+      }
+      &:before {
+        right: 112%;
+      }
+      &:after {
+        left: 107%;
+      }
     }
 
     @include VP768 {
