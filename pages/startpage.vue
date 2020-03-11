@@ -196,7 +196,6 @@ export default {
   .impact-page-startpage{
     height: 100vh;
     overflow: hidden;
-    
 
     &.-logo-yellow {
       .impact-wrapper svg {
@@ -227,14 +226,12 @@ export default {
       z-index: 1;
       .slider-body {
         position: relative;
-        transition: all 675ms ease-in-out;
-        
+        transition: all 675ms ease-in-out; 
       }
       .slide {
         width: 100vw;
         height: 100vh;
         float: left;
-   
       }
       .the-image {
         width: 100vw;
