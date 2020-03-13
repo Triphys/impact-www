@@ -1,0 +1,56 @@
+
+//
+// SITE - PAGE TRANSITIONS
+//
+
+
+///////////////////////////////////////////
+// PAGE TRANSITIONS
+///////////////////////////////////////////
+
+
+// TRANSITION ENTER
+.custom-enter {
+  opacity: 0;
+  .impact-page {
+    opacity: 0;
+  }
+}
+
+.custom-enter-active {
+  transition: opacity .275s ease-out;
+  .impact-page {
+    transition: opacity .275s ease-out;
+  }
+}
+
+.custom-enter-to {
+  opacity: 1;
+  .impact-page {
+    opacity: 1;
+  }
+}
+
+
+// TRANSITION LEAVE
+
+.custom-leave {
+  opacity: 1;
+  .impact-page {
+    opacity: 1;
+  }
+}
+
+.custom-leave-active {
+  transition: opacity .275s ease-out;
+  .impact-page {
+    transition: opacity .275s ease-out;
+  }
+}
+
+.custom-leave-to {
+  opacity: 0;
+  .impact-page {
+    opacity: 0;
+  }
+}

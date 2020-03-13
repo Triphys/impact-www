@@ -5,7 +5,7 @@
 
     <!-- HEADER - SITE -->
         
-        <site-header />
+        <!-- <site-header /> -->
 
 
     <!-- HEADER / PAGE TITLE -->
@@ -69,6 +69,7 @@ import siteFooter from '~/components/site-footer.vue'
 
 export default {
   name: 'impact-page-contact',
+  transition: 'custom',
   components: {
       siteHeader,
       siteFooter

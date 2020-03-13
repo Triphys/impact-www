@@ -4,7 +4,7 @@
 
     <!-- HEADER - SITE -->
 
-      <site-header />
+     <!--  <site-header /> -->
 
 
     <!-- HEADER / PAGE TITLE -->
@@ -42,11 +42,12 @@ import siteSlices   from '~/components/site-slices.vue'
 
 export default {
   name: 'impact-page-content',
-    components: {
-      siteHeader,
-      siteFooter,
-      siteSlices
-    },
+  transition: 'custom',
+  components: {
+    siteHeader,
+    siteFooter,
+    siteSlices
+  },
   head () {
     return {
       title: 'Impact | ' + this.document.page_title[0].text

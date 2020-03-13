@@ -2,7 +2,7 @@
   <div class="impact-page-startpage " :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
 
      <!-- HEADER - SITE -->
-    <site-header />
+    <!-- <site-header /> -->
 
 
     <!-- LOGO - BIG CENTERED -->
@@ -52,7 +52,8 @@ import siteHeader from '~/components/site-header.vue'
 
 
 export default {
-
+  name: 'impact-startpage',
+  transition: 'custom',
   components: {
     siteHeader
   },

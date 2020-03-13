@@ -1,10 +1,10 @@
 <template>
 
-  <div class="site-header" :class="{'-no-logo' : this.$route.name === 'startpage'}">
+  <div class="site-header" :class="{'-no-logo' :this.$route.name === 'startpage'}">
 
-    <a  href="/startpage" class="logo-link">
+    <nuxt-link :to="'/startpage'" class="logo-link">
       <svg-icon class="logo" name="impact" />
-    </a>
+    </nuxt-link>
 
     <div class="menu-toggle" @click="toggleMobileMenu">
       <div class="burger" >
@@ -17,12 +17,16 @@
     <div class="menu">
 
       <ul>
-
-        
-        <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu, '-active': item[2] === activeLink}"> 
+      
+        <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu, '-active': item[2] === activeLink}" > 
           <!-- {{item}} -->
           <template v-if="item[1] !== '/undefined'">
-            <a :href="item[1]" >{{item[0]}}</a>
+            <span @click="closeMenu()">
+              <nuxt-link :to="item[1]">{{item[0]}}</nuxt-link>
+            </span>
+            
+            <!-- <nuxt-link :to=""></nuxt-link> -->
+            <!-- <a :href="item[1]" >{{item[0]}}</a> -->
           </template>
           <template v-else >
             <div @click.prevent="toggleSubMenu(item[2])">{{item[0]}}</div>
@@ -31,7 +35,11 @@
           <template v-if="item[5]">
             <ul class="sub">
               <li v-for="(subitem, index) in item[5]" :key="'i-' + index" :class="{'-active': subitem[2] === activeSubLink}">
-                <a :href="subitem[1]" >{{subitem[0]}}</a>
+                <span @click="closeMenu()">
+                  <nuxt-link :to="subitem[1]" >{{subitem[0]}}</nuxt-link>
+                </span>
+                <!-- <nuxt-link :to=""></nuxt-link> -->
+                <!-- <a :href="subitem[1]" >{{subitem[0]}}</a> -->
               </li>
             </ul>
           </template>
@@ -62,19 +70,21 @@ export default {
     return {
       showSubMenu: undefined,
       activeLink: false,
-      activeSubLink: false, 
+      activeSubLink: false,
+      noLogo: false, 
       sm: this.$store.getters.getSettingsData,
       menuData: this.$store.getters.getMenuData,
       menuClean: [],
       isMenuOpen: this.$store.getters.getMenu,
+      isMenuO: false,
     };
   },
   methods: {
+
     menuAndActiveLink(links){
 
       let _links = links;
       let url_uid = this.$route.params.uid
-      console.log(url_uid)
 
       // The view model.
       let vm = this;
@@ -108,11 +118,10 @@ export default {
           item_url =  '/' + item.primary.link.type
         }
 
-        // Set Level 1 Active (if no sub menu)
-
+        // ACTIVE LINK - Level 1 
         if (url_uid === item_uid) {
-          console.log('active -> ' + item_uid)
           vm.activeLink = item_id
+          vm.activeSubLink = false
         }
 
         // ITEM - Level 1
@@ -147,8 +156,8 @@ export default {
               item_sub_url =  '/' + item.link.type
             }
 
+            // ACTIVE LINK -  Sub level + parent level 1
             if (url_uid === item_sub_uid) {
-              console.log('active sub -> ' + item_sub_uid)
               vm.activeLink = item_id
               vm.activeSubLink = item_sub_id
             }
@@ -163,19 +172,12 @@ export default {
             // SUB ITEM
             _item_sub.push(_this_sub)
 
-            console.log(_this_sub);
-
           });
-
 
           // ITEM - Level 2
           _item.push(_item_sub)
 
-          
-
         }
-
-        
 
         // TO MENU CLEAN
         vm.menuClean.push(_item)
@@ -183,8 +185,18 @@ export default {
       });
 
     },
+    onResize(event) {
+      this.$store.commit("setMenu",false)
+      this.showSubMenu = 0
+    },
     toggleMobileMenu: function(){
-      this.isMenuOpen = !this.isMenuOpen;
+      console.log('toggleMobileMenu')
+      if (this.$store.getters.getMenu) {
+        this.isMenuOpen = false;
+      } else {
+        this.isMenuOpen = true;
+      }
+      
       this.showSubMenu = 0
       this.$store.commit("setMenu",this.isMenuOpen)
     },
@@ -196,11 +208,14 @@ export default {
         }
     },
     closeMenu: function(){
-      this.$store.commit("setMenu",false)
+      setTimeout(() => this.$store.commit("setMenu",false), 300);
+      
     }
   },
   mounted() {
+    window.addEventListener('resize', this.onResize)
     this.menuAndActiveLink(this.menuData)
+
 
   }
 }
@@ -269,6 +284,7 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    opacity: 1;
   }
 
   .logo {
@@ -281,7 +297,10 @@ export default {
     }
   }
 
+
+
   .menu {
+    
     position: absolute;
     z-index: 1;
     top:0;
@@ -289,9 +308,10 @@ export default {
     width: 100%;
     overflow: scroll;
     opacity: 1;
-    background: $yellow;
+    background-color: rgba(255,227,0,1);
     padding: 10px 24px 24px;
     text-align: center;
+
     ul {
       display: none;
     }
@@ -315,13 +335,11 @@ export default {
           color: lighten($black,44);
         }
       }
-
-
     }
 
     > ul {
-       margin: 50px 0 21px;
-       border-top: 1px solid $black;
+      margin: 50px 0 21px;
+      border-top: 1px solid $black;
     }
 
     li.-show {
@@ -358,6 +376,12 @@ export default {
           }
         }
       }
+    }
+  }
+
+   &.-no-logo {
+    .menu {
+      background-color: rgba(255,227,0,0);
     }
   }
 
@@ -412,6 +436,7 @@ export default {
     }
 
     .menu {
+      background-color: rgba(255,227,0,1);
       opacity: 1;
       height: 100vh;
       > ul {
@@ -425,15 +450,13 @@ export default {
 
     &.-no-logo {
       .logo-link {
-        display: none;
-
+        opacity: 0;
       }
       .menu {
-        background: none;
+        background-color: rgba(255,227,0,0);
       }
     }
    
-
     .social-links {
       display: block;
       float: right;
@@ -460,6 +483,8 @@ export default {
     }
 
     .logo-link {
+      opacity: 1;
+      transition: opacity .275s ease-out;
       position: absolute;
       top: 18px;
       left: 21px;
