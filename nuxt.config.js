@@ -32,7 +32,7 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Anton&display=swap' }
     ],
     script: [
-        { src: '//static.cdn.prismic.io/prismic.js?repo=at-prismic&new=true', type: 'text/javascript', defer: true, async: true }
+        { src: '//static.cdn.prismic.io/prismic.js?repo=impact&new=true', type: 'text/javascript', defer: true, async: true }
     ],
     __dangerouslyDisableSanitizers: ['script']
   },
