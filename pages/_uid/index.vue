@@ -3,11 +3,6 @@
   <div class="impact-page impact-page-contact site-grid -border-bottom" >
 
 
-    <!-- HEADER - SITE -->
-        
-        <!-- <site-header /> -->
-
-
     <!-- HEADER / PAGE TITLE -->
 
         <section class="page-impact-header" v-if="document.page_title[0].text">
@@ -61,41 +56,26 @@
 
 <script>
 
-import Prismic from "prismic-javascript"
-import PrismicConfig from "~/prismic.config.js"
-
-import siteHeader from '~/components/site-header.vue'
-import siteFooter from '~/components/site-footer.vue'
-
 export default {
   name: 'impact-page-contact',
   transition: 'custom',
-  components: {
-      siteHeader,
-      siteFooter
-    },
   data() {
     return {
       impLoc: [{ "latitude": 59.299440, "longitude": 18.015775 }],
     }
   },
-  async asyncData({ params, error, req }) {
-    try{
-      // Query to get API object
-      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+    async asyncData({ params, $prismic, error}) {
+   
+    const prismicUID = await $prismic.api.getSingle("contact")
 
-      // Query to get singel page
-      const prismicContact = await api.getSingle('contact')
-
-      // Returns data to be used in template
-      return {
-        document: prismicContact.data
-      }
-    } catch (e) {
-      // Returns error page
+    if (prismicUID) {
+      return { document: prismicUID.data }
+    } else {
       error({ statusCode: 404, message: 'Page not found' })
     }
-  },
+   
+  }
+
 }
 </script>
 

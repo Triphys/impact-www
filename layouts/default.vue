@@ -10,12 +10,8 @@
 
 <script>
 
-import siteHeader from '~/components/site-header.vue'
-
 export default {
-  components: {
-    siteHeader
-  },
+
   data () {
     return {
       orientation: null

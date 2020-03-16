@@ -1,10 +1,6 @@
 <template>
   <div class="impact-page-startpage " :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
 
-     <!-- HEADER - SITE -->
-    <!-- <site-header /> -->
-
-
     <!-- LOGO - BIG CENTERED -->
     <div class="impact-wrapper"> 
       <figure>
@@ -42,21 +38,11 @@
   </div>
 </template>
 
-
 <script>
-
-import Prismic from "prismic-javascript"
-import PrismicConfig from "~/prismic.config.js"
-
-import siteHeader from '~/components/site-header.vue'
-
 
 export default {
   name: 'impact-startpage',
   transition: 'custom',
-  components: {
-    siteHeader
-  },
   data() {
     return {
       impSlidesOld: false,
@@ -69,34 +55,16 @@ export default {
       impSlideLast: false,
     }
   },
-  async asyncData({ params, error, req }) {
-    try{
-      // Query to get API object
-      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+  async asyncData({ $prismic, error }) {
+   
+    const prismicStartpage = await $prismic.api.getSingle("startpage")
 
-      // Query to get content
-      // const prismicSettings = await api.query(
-      //   Prismic.Predicates.at("document.type", "settings")
-      // )
-      // const prismicMenu = await api.query(
-      //   Prismic.Predicates.at("document.type", "menu")
-      // )
-
-      const prismicStartpage = await api.query(
-        Prismic.Predicates.at("document.type", "startpage")
-      )
-
-      // Returns data to be used in template
-      return {
-        // menu: prismicMenu.results[0].data.body,
-        slides: prismicStartpage.results[0].data.body[0].items
-        // setfb: prismicSettings.results[0].data.facebook_url[0].text,
-        // setin: prismicSettings.results[0].data.instagram_url[0].text
-      }
-    } catch (e) {
-      // Returns error page
+    if (prismicStartpage) {
+      return { slides: prismicStartpage.data.body[0].items }
+    } else {
       error({ statusCode: 404, message: 'Page not found' })
     }
+   
   },
   methods: {
 
@@ -130,20 +98,12 @@ export default {
       clone = _slidesClean[0]
       _slidesClean.push(clone)
 
-
-      /// HERE
       this.impSlides = _slidesClean
-
-      // clone = this.impSlides[0]
-      // this.impSlides.push(clone)
-      // HERE
-
       this.impSlidesWidth = this.impSlides.length * 100 + 'vw'
       this.impSlidesLength = this.impSlides.length
 
-
       // Start slider
-      setTimeout(() => this.next(), 3000); 
+      setTimeout(() => this.next(), 2000); 
 
     },
 
@@ -161,7 +121,7 @@ export default {
       if (this.impSlideIndex  === sl) {
         this.impSlidePosition = this.impSlideIndex * -100 + 'vw'
 
-        // Removing "transition" and moving Slider to start postion. 
+        // Removing "transition" and movie Slider to start postion. 
         setTimeout(() => {
           this.impSlideLast = true
           this.impSlidePosition = '0vw'
@@ -176,17 +136,12 @@ export default {
         setTimeout(() => this.next(), 3000); 
       }
           
-    },
+    }
        
-
   },
   mounted () {
    this.sliderSetup(this.slides);
-  },
-  created () {
-   
   }
-
 
 }
 </script>

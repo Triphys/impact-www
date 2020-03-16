@@ -47,14 +47,11 @@
   </div>
 </template>
 
-
 <script>
   export default {
      layout: 'placeholder'
   }
 </script>
-
-
 
 <style lang="scss">
     .p-placeholder {

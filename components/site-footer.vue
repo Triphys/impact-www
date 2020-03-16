@@ -22,7 +22,7 @@ export default {
 <style lang="scss" >
 
   .site-footer {
-    // background-color: darken($yellow, 5);
+    
     padding: 56px 21px;
     text-align: center;
     .logo-footer {
@@ -57,6 +57,7 @@ export default {
         height: 38px;
       }
     }
+
   }
 
 </style>

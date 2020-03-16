@@ -1,12 +1,11 @@
 <template>
   <nav class="site-menu">
- <!--  {{menuClean}} -->
-
-      <ul>
-        <li v-for="(item,index) in menuClean" :key="index">
-          <a class="btnn"  href="#" v-scroll-to="item[1]" >{{item[0]}}</a>
-        </li>
-      </ul>
+    
+    <ul>
+      <li v-for="(item,index) in menuClean" :key="index">
+        <a class="btnn"  href="#" v-scroll-to="item[1]" >{{item[0]}}</a>
+      </li>
+    </ul>
 
   </nav>
 </template>

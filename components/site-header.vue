@@ -7,7 +7,7 @@
     </nuxt-link>
 
     <div class="menu-toggle" @click="toggleMobileMenu">
-      <div class="burger" >
+      <div class="burger">
         <span></span>
         <span></span>
         <span></span>

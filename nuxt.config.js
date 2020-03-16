@@ -30,11 +30,7 @@ module.exports = {
       { rel: 'icon', type: 'image/png', size: '16x16', href: '/favicon-16x16.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Anton&display=swap' }
-    ],
-    script: [
-        { src: '//static.cdn.prismic.io/prismic.js?repo=impact&new=true', type: 'text/javascript', defer: true, async: true }
-    ],
-    __dangerouslyDisableSanitizers: ['script']
+    ]
   },
 
   /*
@@ -53,9 +49,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-  '~/plugins/link-resolver.js',
-  '~/plugins/html-serializer.js',
-  '~/plugins/prismic-vue.js',
+  '~/components/index',
   '~/plugins/svg4everybody'
   ],
 
@@ -64,13 +58,23 @@ module.exports = {
   */
   modules: [
     // 'modules/debug-nuxt-hooks',
-    'modules/prismic-dynamic-routes',
+    '@/modules/prismic-dynamic-routes',
+    '@/modules/static',
+    '@/modules/crawler',
+    '@nuxtjs/prismic',
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
     ['@nuxtjs/dotenv', { systemvars: true }],
     ['nuxt-gmaps', { key: process.env.GMAPS_KEY }]
   ],
+
+  prismic: {
+    endpoint: process.env.PRISMIC_API,
+    linkResolver: '@/plugins/link-resolver',
+    htmlSerializer: '@/plugins/html-serializer',
+    preview: '/preview/'
+  },
 
   styleResources: {
     scss: [
@@ -96,7 +100,8 @@ module.exports = {
   */
 
   generate: {
-    routes: dynamicRoutes
+    routes: dynamicRoutes,
+    fallback: '404.html'
   },
 
   /*
