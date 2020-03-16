@@ -14,7 +14,7 @@
         </h2>
 
         <h6 class="title -sub">
-          impactgym.com 
+          impactgym.se
         </h6>
 
         </div>
