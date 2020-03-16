@@ -6,7 +6,7 @@
 
 import Prismic from "prismic-javascript"
 import LinkResolver from "~/plugins/link-resolver.js"
-// import PrismicConfig from "~/prismic.config.js"
+import PrismicConfig from "~/prismic.config.js"
 
 export default {
   name: 'Preview',
@@ -16,11 +16,13 @@ export default {
 
     console.log('previewToken -> ' + previewToken); // Undefined <--- !! 
 
-    const api = await Prismic.getApi(process.env.PRISMIC_API)
+    const api = await Prismic.getApi(PrismicConfig.apiEndpoint)
+   // console.log('LinkResolver -> ' , LinkResolver); 
 
-    const url = await api.previewSession(previewToken, LinkResolver, '/preview')
+    const url = await api.previewSession(previewToken, LinkResolver, '/')
     console.log('url -> ' + url);
     redirect(url)
+
   },
 }
 </script>
