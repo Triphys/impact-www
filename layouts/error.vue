@@ -1,6 +1,6 @@
 
 <template>
-    <div class="sgd-s-hero -cover -bg-pattern-light">
+    <div class="sgd-s-hero -error -cover -bg-pattern-light">
       <div>
         <logo/>
 
@@ -17,7 +17,6 @@
             An error occurred
           </h2>
           <h6 class="title -sub">{{error.statusCode}}</h6><br><br>
-          <nuxt-link class="btn -small" to="/" >Home</nuxt-link>
         </div>
         
       </div>

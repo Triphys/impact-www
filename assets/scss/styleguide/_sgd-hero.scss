@@ -18,6 +18,18 @@
       min-height: 87vh;
     }
 
+    &.-error {
+      background-color: $black;
+      svg {
+        fill: $yellow;
+      }
+      .title,
+      .title.-sub,
+      a {
+        color: $yellow;
+      }
+    }
+
 
     // - - - LOGO
 
@@ -27,6 +39,8 @@
       max-width: 740px;
       max-height: 640px;
     }
+
+
 
 
     // - - TYPOGRAPHY
