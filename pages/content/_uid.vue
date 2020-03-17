@@ -33,7 +33,12 @@ export default {
   },
   head () {
     return {
-      title: 'Impact | ' + this.document.page_title[0].text
+      title: this.sm.seo_page_title[0].text + ' | ' + this.document.page_title[0].text
+    }
+  },
+  data () {
+    return {
+      sm: this.$store.getters.getSettingsData,
     }
   },
   async asyncData({ params, $prismic, error}) {

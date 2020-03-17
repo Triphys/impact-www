@@ -11,10 +11,20 @@
 <script>
 
 export default {
+  head () {
+    return {
+       title: this.sm.seo_page_title[0].text,
+       meta: [
+        { name: 'keywords', content: this.sm.seo_meta_keywords[0].text},
+        { hid: 'description', name: 'description', content: this.sm.seo_meta_description[0].text}
+      ],
+    }
+  },
 
   data () {
     return {
-      orientation: null
+      orientation: null,
+      sm: this.$store.getters.getSettingsData,
     }
   },
   methods: {

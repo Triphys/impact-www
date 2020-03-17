@@ -59,9 +59,15 @@
 export default {
   name: 'impact-page-contact',
   transition: 'custom',
+  head () {
+    return {
+      title: this.sm.seo_page_title[0].text + ' | ' + this.document.page_title[0].text
+    }
+  },
   data() {
     return {
       impLoc: [{ "latitude": 59.299440, "longitude": 18.015775 }],
+      sm: this.$store.getters.getSettingsData,
     }
   },
     async asyncData({ params, $prismic, error}) {
