@@ -1,25 +1,40 @@
 <template>
 
-  <section class="slice-impact-content impact-content" :class="[border]">
+  <section class="slice-impact-content impact-content" :class="[border,pos]">
     <div class="gc">
 
       <div class="g-12 border-top border"></div>
 
-      <div class="g-6 slice-image">
-        <img :src="sliceRaw.primary.image.url" />
-      </div>
 
-      <div class="g-6 slice-content">
+      <div class="row " :class="{'-g-shift-vp600' : pos}">   
+        <div class="g-6 slice-image" :class="{'content-video' : sliceRaw.primary.youtube.provider_url}">
 
-        <div class="header">
-          <prismic-rich-text class="header-styling" :field="sliceRaw.primary.header"/>
+          <template v-if="sliceRaw.primary.image && !sliceRaw.primary.youtube.provider_url">
+            <prismic-image :field="sliceRaw.primary.image" />           
+          </template>
+
+          <template v-if="sliceRaw.primary.youtube.provider_url">
+            <prismic-embed :field="sliceRaw.primary.youtube" />         
+          </template>
+
+
         </div>
 
-        <div class="text">
-          <prismic-rich-text :field="sliceRaw.primary.text"/>
-        </div>
+        <div class="g-6 slice-content">
 
+          <div class="header">
+            <prismic-rich-text class="header-styling" :field="sliceRaw.primary.header"/>
+          </div>
+
+          <div class="text">
+            <prismic-rich-text :field="sliceRaw.primary.text"/>
+          </div>
+
+        </div>        
       </div>
+
+
+
 
       <div class="g-12 border-bottom border"></div>
       
@@ -30,20 +45,31 @@
 </template>
 
 <script>
-export default {
-  props: ['sliceRaw'],
-  name: 'slice-impact-content',
-  data() {
-    return {
-      border: '-border-' + this.sliceRaw.primary.border__black_line_.toLowerCase() || false
+
+  export default {
+    props: ['sliceRaw'],
+    name: 'slice-impact-content',
+    data() {
+      return {
+        border: '-border-' + this.sliceRaw.primary.border__black_line_.toLowerCase() || false,
+        pos: this.sliceRaw.primary.image_video_position.toLowerCase() === 'right' ?  true : false,
+      }
     }
   }
-}
+
 </script>
 
 <style lang="scss">
 
   .slice-impact-content {
+     .content-video {
+      margin-bottom: 1.2em;
+      > div {
+        @include aspect-ratio-iframe(4,3);
+        position: relative;
+        padding: 0 14px;
+      }
+    }
     .slice-image {
       min-height: 1px;
       margin-bottom: 14px;

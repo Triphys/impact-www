@@ -1,14 +1,11 @@
 <template>
   <div>
 
-
-    <!-- <h6>comp Slices -> {{slicesRaw}}</h6>  -->
-
     <div v-for="(slice, index) in slices" :key="'slice-' + index">
 
-      
-    <!-- {{slice}} -->
-    <!-- {{slice.slice_type}} -->
+      <!-- {{slice}} -->
+      <!-- {{slice.slice_type}} -->
+
 
       <!-- HEADER -->
       <template v-if="slice.slice_type === 'content_-_heading'">

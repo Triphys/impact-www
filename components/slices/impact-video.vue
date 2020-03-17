@@ -3,7 +3,7 @@
   <section class="slice-impact-video impact-content">
     <div class="gc">
       <div class="g-12 content-video">
-        <prismic-rich-text :field="sliceRaw.primary.youtube_link"/>
+        <prismic-embed :field="sliceRaw.primary.youtube" />
       </div>
     </div>
   </section>
