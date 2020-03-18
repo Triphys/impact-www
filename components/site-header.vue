@@ -191,9 +191,9 @@ export default {
 
             //ACTIVE PARENT
             if (url_uid === subitem[4]) {
-              console.log(subitem[3])
+           
               vm.activeParentLink = subitem[3]
-              console.log(vm.activeParentLink )
+             
             } 
 
           });
