@@ -37,7 +37,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: 'yellow' },
+  loading: { color: 'red' },
 
   /*
   ** Global CSS
@@ -59,7 +59,7 @@ module.exports = {
   */
   modules: [
     // 'modules/debug-nuxt-hooks',
-    '@/modules/prismic-dynamic-routes',
+    // '@/modules/prismic-dynamic-routes',
     '@/modules/static',
     '@/modules/crawler',
     '@nuxtjs/prismic',
@@ -100,10 +100,10 @@ module.exports = {
   ** Generate
   */
 
-  generate: {
-    routes: dynamicRoutes,
-    fallback: '404.html'
-  },
+  // generate: {
+  //   routes: dynamicRoutes,
+  //   fallback: '404.html'
+  // },
 
   /*
 

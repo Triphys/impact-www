@@ -13,13 +13,13 @@ export default function (doc) {
   }
 
   if (doc.type === 'content') {
-    return '/content/' + doc.uid
+    return `/content/${doc.uid}`
   }
 
   if (doc.type === 'preview') {
     return '/preview'
   }
 
-  //return '/'
-  return '/not-found'
+  return '/'
+  //return '/not-found'
 }
