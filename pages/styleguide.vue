@@ -34,7 +34,7 @@
           <div class="sgd-gc">
 
             <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Logo</h2>
+              <h2 class="sgd-header -type -brand">Logo</h2>
             </div>
 
             <div class="sgd-row">
@@ -68,7 +68,7 @@
           <div class="sgd-gc">
 
               <div class="sgd-g-12">
-                <h2 class="sgd-header -type -global">Colors</h2>
+                <h2 class="sgd-header -type -brand">Colors</h2>
               </div>
 
       
@@ -97,7 +97,7 @@
         <section class="sgd-s-typography " id="to-sgd-typography" >
           <div class="sgd-gc">
             <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Fonts</h2>
+              <h2 class="sgd-header -type -brand">Fonts</h2>
             </div>
 
 
@@ -135,7 +135,7 @@
           <div class="sgd-gc">
 
             <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Link</h2>
+              <h2 class="sgd-header -type -foundation">Link</h2>
             </div>
 
             <div class="sgd-g-12">
@@ -164,7 +164,7 @@
         <section class="sgd-s-grid " id="to-sgd-grid">
           <div class="sgd-gc">
             <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Layout - Breakpoints <span>(Px)</span></h2>
+              <h2 class="sgd-header -type -foundation">Layout - Breakpoints <span>(Px)</span></h2>
             </div>
             <div class="sgd-g-12">
               <p>The most common breakpoints and highlited recommendations.</p> <br>
@@ -184,7 +184,7 @@
 
           <div class="sgd-gc">
             <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Layout - Grid <span>(12 columns, Px)</span></h2>
+              <h2 class="sgd-header -type -foundation">Layout - Grid <span>(12 columns, Px)</span></h2>
             </div>
           </div>
 
@@ -259,85 +259,105 @@
         </section>
 
 
-        <!-- ICONS -->
+        <!-- ICONS + FAVICON + IMAGES -->
 
-        <section class="sgd-s-icons -light"  id="to-sgd-icons">
+        <section class="sgd-s-icons sgd-s-images -light"  id="to-sgd-icons">
           <div class="sgd-gc">
 
-            <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Icons</h2>
-            </div>
 
             <div class="sgd-row">
 
-              <div class="sgd-g-12">
+              <!-- ICONS -->
+              <div class="sgd-g-4">
+                 <h2 class="sgd-header -type -foundation">Icons</h2>
                 <svg-icon class="icon" name="facebook" />
                 <svg-icon class="icon" name="instagram" />
               </div>
 
-            </div>
-
-          </div>
-        </section>
-
-
-        <!-- ICONS -->
-
-        <section class="sgd-s-icons "  id="to-sgd-icons">
-          <div class="sgd-gc">
-
-            <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Favicon</h2>
-            </div>
-
-            <div class="sgd-row">
-
-              <div class="sgd-g-1">
-                <img src="~/static/android-chrome-512x512.png">
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-
-        <!-- IMAGES -->
-
-        <section class="sgd-s-images -light"  id="to-sgd-images">
-          <div class="sgd-gc">
-
-            <div class="sgd-g-12">
-              <h2 class="sgd-header -type -global">Images <span>(Ratios)</span> </h2>
-            </div>
-
-
-            <div class="sgd-row">
-
+              <!-- FAVICON  -->
               <div class="sgd-g-4">
-                <div class="sgd-header-tag -large -rek">16:9</div>
-                <figure class="-photo-widescreen">
-                  <img src="https://images.unsplash.com/photo-1557408833-91ef36660bcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3448&q=80" />
-                </figure>
+                <h2 class="sgd-header -type -foundation">Favicon</h2>
+                <img src="~/static/android-chrome-512x512.png" class="fav">
               </div>
-          <!--         <div class="sgd-g-3">
-                <div class="sgd-header-tag -large -rek">3:4</div>
-                <figure class="-photo-portrait">
-                  <img src="https://images.unsplash.com/photo-1580917575907-7f3d275c7968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2667&q=80" />
-                </figure>
-              </div>
-              <div class="sgd-g-5">
-                <div class="sgd-header-tag -large -rek">2.35:1</div>
-                <figure class="-photo-cinemascope">
-                  <img src="https://images.unsplash.com/photo-1580932700205-94605c07784d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3891&q=80" />
-                </figure>
-              </div>-->
 
- 
+              <!-- IMAGES -->
+              <div class="sgd-g-4">
+                <h2 class="sgd-header -type -foundation">Image <span>(Ratio)</span> </h2>
+                <figure class="-image-ratio-4-3">
+                  <img src="https://images.prismic.io/impact/2236cde9-81ca-4f5e-a276-0459ef1dee1d_imp-p-2.jpeg?auto=compress,format&rect=0,0,5184,3453&w=512&h=341" />
+                </figure>
+              </div>
+
+
             </div>
 
           </div>
         </section>
+
+
+        <!-- *** *** --- ----- ---  *** *** -->
+        <!-- *** *** --- PARTS ---  *** *** -->
+        <!-- *** *** --- ----- ---  *** *** -->
+
+
+        <!-- PART - HEADER -->
+
+        <section class="sgd-s-parts"  id="to-sgd-icons">
+
+          <div class="sgd-gc">
+            <div class="sgd-g-12">
+               <h2 class="sgd-header -type -part">Header</h2>
+            </div>
+          </div>
+
+          <div class="part">
+            <site-header />
+          </div>
+
+        </section>
+
+
+        <!-- PART - FOOTER -->
+
+        <section class="sgd-s-parts -light"  id="to-sgd-icons">
+
+          <div class="sgd-gc">
+            <div class="sgd-g-12">
+               <h2 class="sgd-header -type -part">Footer</h2>
+            </div>
+          </div>
+
+          <div class="part">
+            <site-footer />
+          </div>
+
+        </section>
+
+
+        <!-- PART - CONTENT -->
+
+        <section class="sgd-s-parts"  id="to-sgd-icons">
+
+          <div class="sgd-gc">
+            <div class="sgd-g-12">
+               <h2 class="sgd-header -type -part">CONTENT</h2>
+            </div>
+          </div>
+
+          <div class="part">
+            <br>
+            <section class="slice-impact-content impact-content -border-both"><div class="gc"><div class="g-12 border-top border"></div> <div class="row "><div class="g-6 slice-image"><img src="https://images.prismic.io/impact/7c79c67d-e4e1-42d0-84b4-5c4f71f2b01b_impact-temp-logo.jpg?auto=compress,format&amp;rect=0,0,3900,2597&amp;w=512&amp;h=341"> <!----></div> <div class="g-6 slice-content"><div class="header"><div class="header-styling"><h2>Thaiboxning</h2><h2></h2></div></div> <div class="text"><div><p><strong>NYBÖRJARGRUPPEN<br></strong><em><strong></strong>Junior: </em>3 pass/vecka, 2100kr, <a href="/content/schema">schema &gt;</a><br><em>Senior:</em> 3 pass/vecka, 3000kr, <a href="/content/schema">schema &gt;</a></p><p><strong>FORTSÄTTNINGSGRUPPEN<br></strong><em><strong></strong>Junior: </em>4 pass/vecka, 2100kr, <a href="/content/schema">schema &gt;</a><br><em>Senior:</em> 4 pass/vecka, 3000kr, <a href="/content/schema">schema &gt;</a></p><p><strong>AVANCERAT / TÄVLING<br></strong><em><strong></strong>6</em> pass/vecka, 3000kr, <a href="/content/schema">schema &gt;</a></p></div></div></div></div> <div class="g-12 border-bottom border"></div></div></section>
+          </div>
+
+        </section>
+
+
+
+
+
+
+     
+
 
 
     </div>
@@ -353,7 +373,8 @@
   export default {
     components: {
       Logo
-    }
+    },
+    layout: 'placeholder'
   }
   
 </script>

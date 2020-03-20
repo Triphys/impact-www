@@ -11,14 +11,26 @@
 
   }
 
-  .-photo-widescreen {
+  .-photo-widescreen,
+  .-image-ratio-16-9 {
     @include aspect-ratio-img(16,9);
+  }
+
+  .-image-ratio-4-3 {
+    @include aspect-ratio-img(4,3);
   }
   .-photo-porttrait {
     @include aspect-ratio-img(3,4);
   }
   .-photo-cinemascope {
     @include aspect-ratio-img(2.35,1);
+  }
+  .-image-ratio-2_35-1 {
+    @include aspect-ratio-img(2.35,1);
+  }
+
+  .fav {
+    max-width: 68px
   }
 
 }

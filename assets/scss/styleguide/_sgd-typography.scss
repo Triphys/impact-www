@@ -89,9 +89,33 @@
     }
   }
 
+  &.-docs {
+    &:before {
+      content: "documentation";
+    }
+  }
+
+  &.-part {
+    &:before {
+      content: "part";
+    }
+  }
+
+  &.-foundation{
+    &:before {
+      content: "foundation";
+    }
+  }
+
   &.-brand-global {
     &:before {
       content: "brand / global";
+    }
+  }
+
+  &.-brand-foundation {
+    &:before {
+      content: "brand / foundation";
     }
   }
 
