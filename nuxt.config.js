@@ -31,7 +31,12 @@ module.exports = {
       { rel: 'icon', type: 'image/png', size: '16x16', href: '/favicon-16x16.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Anton&display=swap' }
-    ]
+    ],
+    script: [
+        { src: '//static.cdn.prismic.io/prismic.js?repo=impact&new=true', type: 'text/javascript', defer: true, async: true }
+    ],
+    __dangerouslyDisableSanitizers: ['script']
+
   },
 
   /*
@@ -50,6 +55,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+  '~/plugins/link-resolver.js',
+  '~/plugins/html-serializer.js',
+  '~/plugins/prismic-vue.js',
   '~/components/index',
   '~/plugins/svg4everybody'
   ],
@@ -58,11 +66,11 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // 'modules/debug-nuxt-hooks',
-    // '@/modules/prismic-dynamic-routes',
-    '@/modules/static',
-    '@/modules/crawler',
-    '@nuxtjs/prismic',
+    //'modules/debug-nuxt-hooks',
+    '@/modules/prismic-dynamic-routes',
+    // '@/modules/static',
+    // '@/modules/crawler',
+    // '@nuxtjs/prismic',
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
@@ -100,10 +108,10 @@ module.exports = {
   ** Generate
   */
 
-  // generate: {
-  //   routes: dynamicRoutes,
-  //   fallback: '404.html'
-  // },
+  generate: {
+    routes: dynamicRoutes,
+    fallback: '404.html'
+  },
 
   /*
 

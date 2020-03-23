@@ -3,7 +3,7 @@
     
     <site-header />
 
-    <nuxt/>
+    <nuxt />
     
   </div>
 </template>

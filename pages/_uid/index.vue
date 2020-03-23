@@ -56,6 +56,9 @@
 
 <script>
 
+import Prismic from "prismic-javascript"
+import PrismicConfig from "~/prismic.config.js"
+
 export default {
   name: 'impact-page-contact',
   transition: 'custom',
@@ -70,17 +73,37 @@ export default {
       sm: this.$store.getters.getSettingsData,
     }
   },
-    async asyncData({ params, $prismic, error}) {
-   
-    const prismicUID = await $prismic.api.getSingle("contact")
+  async asyncData({ params, error, req }) {
+    try{
+      // Query to get API object
+      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
 
-    if (prismicUID) {
-      return { document: prismicUID.data }
-    } else {
-      error({ statusCode: 404, message: 'Page not found' })
-    }
+      // Query to get singel page
+      const prismicContact = await api.getSingle('contact')
+ 
+      // Returns data to be used in template
+      return {
+        document: prismicContact.data
+      }
+    } catch (e) {
+      // Returns error page
+       error({ statusCode: 404, message: 'Page not found' })
+     }
+  },
+
+  // LATER - @nuxt/prismuc-nuxt   
+
+  // async asyncData({ params, $prismic, error}) {
    
-  }
+  //   const prismicUID = await $prismic.api.getSingle("contact")
+
+  //   if (prismicUID) {
+  //     return { document: prismicUID.data }
+  //   } else {
+  //     error({ statusCode: 404, message: 'Page not found' })
+  //   }
+   
+  // }
 
 }
 </script>

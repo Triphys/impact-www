@@ -21,9 +21,9 @@
         <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu, '-active': item[2] === activeParentLink}" > 
 
           <template v-if="item[1] !== '/undefined'">
-            <!-- <span @click="closeMenu()"> -->
+            <span @click="closeMenu()">
               <nuxt-link :to="item[1]">{{item[0]}}</nuxt-link>
-            <!-- </span> -->
+            </span>
           </template>
           <template v-else >
             <div @click.prevent="toggleSubMenu(item[2])">{{item[0]}}</div>
@@ -32,9 +32,9 @@
           <template v-if="item[5]">
             <ul class="sub">
               <li v-for="(subitem, index) in item[5]" :key="'i-' + index" >
-                <!-- <span @click="closeMenu()"> -->
+                <span @click="closeMenu()">
                   <nuxt-link :to="subitem[1]" >{{subitem[0]}}</nuxt-link>
-                <!-- </span> -->
+                </span>
               </li>
             </ul>
           </template>
@@ -184,6 +184,7 @@ export default {
 
           let _items = item
 
+
           // SUB MENU
           if (item[1] === '/undefined') {
 
@@ -203,7 +204,7 @@ export default {
         });
 
 
-      }, 400);
+      }, 1000);
 
       
 
@@ -229,11 +230,14 @@ export default {
         }
     },
     closeMenu: function(){
-      setTimeout(() => this.$store.commit("setMenu",false), 300);
-      setTimeout(() => this.activeParentLink = false, 290);
+      
+      setTimeout(() => this.$store.commit("setMenu",false), 300)
+      setTimeout(() => this.activeParentLink = false, 290)
 
       this.showSubMenu = 0
+
       this.subLinkActive()
+     
     }
   },
   mounted() {

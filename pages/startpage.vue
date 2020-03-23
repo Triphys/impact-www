@@ -40,6 +40,9 @@
 
 <script>
 
+import Prismic from "prismic-javascript"
+import PrismicConfig from "~/prismic.config.js"
+
 export default {
   name: 'impact-startpage',
   transition: 'custom',
@@ -55,17 +58,55 @@ export default {
       impSlideLast: false,
     }
   },
-  async asyncData({ $prismic, error }) {
-   
-    const prismicStartpage = await $prismic.api.getSingle("startpage")
 
-    if (prismicStartpage) {
-      return { slides: prismicStartpage.data.body[0].items }
-    } else {
+  async asyncData({ params, error, req }) {
+   try{
+       // Query to get API object
+       const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+  
+       // Query to get content
+       // const prismicSettings = await api.query(
+       //   Prismic.Predicates.at("document.type", "settings")
+       // )
+       // const prismicMenu = await api.query(
+       //   Prismic.Predicates.at("document.type", "menu")
+       // )
+  
+       const prismicStartpage = await api.query(
+         Prismic.Predicates.at("document.type", "startpage")
+       )
+  
+       // Returns data to be used in template
+       return {
+         // menu: prismicMenu.results[0].data.body,
+         slides: prismicStartpage.results[0].data.body[0].items
+         // setfb: prismicSettings.results[0].data.facebook_url[0].text,
+         // setin: prismicSettings.results[0].data.instagram_url[0].text
+       }
+     } catch (e) {
+      // Returns error page
       error({ statusCode: 404, message: 'Page not found' })
     }
-   
+
+  
   },
+
+
+  
+
+  // LATER - @nuxt/prismuc-nuxt  
+
+  // async asyncData({ $prismic, error }) {
+   
+  //   const prismicStartpage = await $prismic.api.getSingle("startpage")
+
+  //   if (prismicStartpage) {
+  //     return { slides: prismicStartpage.data.body[0].items }
+  //   } else {
+  //     error({ statusCode: 404, message: 'Page not found' })
+  //   }
+   
+  // },
   methods: {
 
     sliderSetup(slides){

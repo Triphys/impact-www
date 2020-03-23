@@ -14,13 +14,16 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
     "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/prismic": "^1.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/svg-sprite": "^0.4.7",
     "cross-env": "^5.2.0",
     "nuxt": "^2.11.0",
     "nuxt-gmaps": "^1.1.7",
-    "svg4everybody": "^2.1.9"
+    "svg4everybody": "^2.1.9",
+    "prismic-dom": "^2.1.0",
+    "prismic-javascript": "^2.1.5",
+    "prismic-vue": "git+https://github.com/prismicio/prismic-vue.git#nuxt"
+
   },
   "devDependencies": {
     "node-sass": "^4.12.0",
