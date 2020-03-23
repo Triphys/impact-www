@@ -2,9 +2,9 @@
 
   <div class="site-footer" :class="{'-hide' : this.$route.name === 'startpage'}">
 
-    <figure class="logo-footer">
-      <svg-icon class="logo" name="impact" />
-    </figure>
+   <div class="gc">
+    <prismic-rich-text :field="footerData.data.footer_text"/>
+   </div>  
 
   </div>
 
@@ -12,10 +12,16 @@
 
 <script>
 
-
+import Prismic from "prismic-javascript"
+import PrismicConfig from "~/prismic.config.js"
 
 export default {
-  name: 'site-footer'
+  name: 'site-footer',
+  data() {
+    return {
+      footerData: this.$store.getters.getFooterData
+    };
+  }
 }
 </script>
 
@@ -23,39 +29,18 @@ export default {
 
   .site-footer {
     
-    padding: 56px 21px;
+    padding: 21px 21px;
     text-align: center;
-    .logo-footer {
-      position: relative;
-      width: auto;
-      display: inline-block;
-      svg {
-        width: 100px;
-        height: 33px;
-      }
-      &:before,
-      &:after {
-        content: '';
-        height: 1px;
-        width: 50px;
-        background-color: $black;
-        position: absolute;
-        z-index: 1;
-        top: 49%;
-      }
-      &:before {
-        right: 112%;
-      }
-      &:after {
-        left: 107%;
-      }
+    line-height: 1.256;
+    margin: 0;
+    font-size: 24px;
+    font-family: $font-impact;
+    p {
+      margin: 0;
     }
 
-    @include VP768 {
-      .logo-footer svg {
-        width: 120px;
-        height: 38px;
-      }
+    @include VP1280 {
+      font-size: 28px;
     }
 
   }

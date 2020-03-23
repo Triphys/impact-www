@@ -93,7 +93,7 @@ em {
 
   .impact-content {
 
-    // margin-bottom: 18px;
+   
 
     ul,ol {
       margin-top: 0;
@@ -115,9 +115,16 @@ em {
       text-transform: uppercase;
       a {
         text-decoration: none;
+        color: $grey;
         &:hover {
           color: $grey;
         }
+      }
+    }
+    .text {
+      strong {
+        font-family: $font-impact;
+        color: $grey;
       }
     }
 

@@ -4,6 +4,7 @@ import PrismicConfig from "~/prismic.config.js"
 
 export const state = () => ({
   activeLink: 1,
+  footerData: false,
   menuData: false,
   settingsData: false,
   menu: false,
@@ -17,6 +18,9 @@ export const state = () => ({
 export const mutations = {
   setActiveLink(state, res) {
     state.activeLink = res
+  },
+  setFooterData(state, res) {
+    state.footerData = res
   },
   setMenuData(state, res) {
     state.menuData = res
@@ -60,9 +64,11 @@ export const actions = {
       const prismicMenu = await api.query(
         Prismic.Predicates.at("document.type", "menu")
       )
+      const prismicFooter = await api.getSingle('footer')
 
     commit('setMenuData', prismicMenu.results[0].data.body)
     commit('setSettingsData', prismicSettings.results[0].data)
+    commit('setFooterData', prismicFooter)
 
     //console.log(prismicMenu.results[0].data.body);
     //console.log(prismicSettings.results[0].data);
@@ -70,6 +76,9 @@ export const actions = {
   },
   setActiveLink(vuexContext, res) {
     vuexContext.commit('setActiveLink', res)
+  },
+  setFooterData(vuexContext, res) {
+    vuexContext.commit('setFooterData', res)
   },
   setMenuData(vuexContext, res) {
     vuexContext.commit('setMenuData', res)
@@ -100,6 +109,9 @@ export const actions = {
 export const getters = {
   getActiveLink(state) {
     return state.activeLink
+  },
+  getFooterData(state) {
+    return state.footerData
   },
   getMenuData(state) {
     return state.menuData

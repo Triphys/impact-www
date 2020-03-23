@@ -371,13 +371,13 @@ export default {
       padding: 11px 0 12px;
       color: $grey;
 
-      
       &:hover {
         color: darken($grey, 8);
         .impact-page-startpage & {
           color: lighten($black,44);
         }
       }
+
     }
 
     
@@ -551,17 +551,26 @@ export default {
 
     .logo {
       margin-top: 0;
-      width: 120px;
-      height: 38px;
+      width: 160px;
+      height: 53px;
       transition: all .275s ease-in-out;
     }
 
     .menu {
       overflow: visible;
       height: auto;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      padding: 14px 28px 28px;
+      height: auto;
 
       > ul {
         display: block;
+          > li > span a, 
+          > li > div {
+            padding: 4px 0 12px;           
+          }
       }
 
       li.-show {
@@ -583,11 +592,7 @@ export default {
         }
       }
       
-      display: block;
-      visibility: visible;
-      opacity: 1;
-      padding: 14px 28px 17px;
-      height: auto;
+      
       li {
         display: inline-block;
         margin-left: 10px;
@@ -612,6 +617,19 @@ export default {
         border-bottom: none;
       }
     }
+  }
+
+  @include VP1280 {
+
+    .logo {
+      width: 240px;
+      height: 79px;
+    }
+
+    .menu {
+      padding: 14px 28px 40px;
+    }
+
   }
 
 }
