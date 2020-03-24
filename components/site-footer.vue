@@ -38,6 +38,12 @@ export default {
     p {
       margin: 0;
     }
+    a {
+      text-decoration: none;
+      &:hover {
+        color: $gray;
+      }
+    }
 
     @include VP1280 {
       font-size: 28px;
