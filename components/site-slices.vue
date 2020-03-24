@@ -7,6 +7,9 @@
       <!-- {{slice.slice_type}} -->
 
 
+
+      <!-- *** CONTENT PAGETYPE *** -->
+
       <!-- HEADER -->
       <template v-if="slice.slice_type === 'content_-_heading'">
         <slice-heading :sliceRaw="slice"/>
@@ -43,6 +46,14 @@
       </template>
 
 
+
+      <!-- *** SCHEMA PAGETYPE *** -->
+
+      <!-- DAY -->
+      <template v-if="slice.slice_type === 'day'">
+        <slice-day :sliceRaw="slice"/>
+      </template>
+
     </div>
   </div>
 </template>
@@ -54,6 +65,7 @@ import sliceVideo  from '~/components/slices/impact-video.vue'
 import sliceImage  from '~/components/slices/impact-image.vue'
 import sliceText  from '~/components/slices/impact-text.vue'
 import sliceImageText  from '~/components/slices/impact-content.vue'
+import sliceDay  from '~/components/slices/impact-day.vue'
 
 
 export default {
@@ -67,7 +79,8 @@ export default {
     sliceVideo,
     sliceImage,
     sliceText,
-    sliceImageText
+    sliceImageText,
+    sliceDay
   },
   data () {
     return {

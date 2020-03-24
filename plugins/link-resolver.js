@@ -16,10 +16,13 @@ export default function (doc) {
     return `/content/${doc.uid}`
   }
 
+  if (doc.type === 'schema') {
+    return `/schema/${doc.uid}`
+  }
+
   if (doc.type === 'preview') {
     return '/preview'
   }
 
   return '/'
-  //return '/not-found'
 }

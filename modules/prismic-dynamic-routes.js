@@ -28,7 +28,16 @@ export default async function asyncModule (context, error, req) {
 		    return '/'+cont.uid
 		})
 
-		const routes = prismicContent.concat(prismicContact)
+
+		const prismicSchemaRes = await api.query([
+	        Prismic.Predicates.at('document.type', 'schema')
+	    ])
+	    const prismicSchema = prismicContactRes.results.map((cont) => {
+		    return '/'+cont.uid
+		})
+
+		const routes_1 = prismicContent.concat(prismicContact)
+		const routes = routes_1.concat(prismicSchema)
 
 		console.log(routes);
 	    
