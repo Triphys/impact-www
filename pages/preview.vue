@@ -19,7 +19,7 @@ export default {
     const api = await Prismic.getApi(PrismicConfig.apiEndpoint)
     // console.log('LinkResolver -> ' , LinkResolver); 
 
-    // const url = await api.previewSession(previewToken, LinkResolver, '/')
+    const url = await api.previewSession(previewToken, LinkResolver, '/')
     //console.log('url -> ' + url);
     redirect(url)
 
