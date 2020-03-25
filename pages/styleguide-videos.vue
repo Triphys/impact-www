@@ -106,6 +106,29 @@
             <br><br>
             <div class="sgd-row">
               <div class="sgd-g-6">
+              
+                <h2>Footer info</h2>
+                <p>1. Go to content <a href="https://impact.prismic.io/documents/working/" target="_blank">page</a>.</p>
+                <p>2. Click the page named "Footer"</p>
+                <p>3. Add text and links</p>
+          
+                
+
+              </div>
+              
+             <div class="sgd-g-6">
+                <h4>&nbsp;</h4>
+                <video width="320" height="240" controls>
+                <source src="https://activetalents.se/waterslowenhielm/impact/videos/footer-1.webm" type="video/webm">
+                Your browser does not support the video tag.
+                </video>
+              </div>
+             
+            </div>
+
+            <br><br>
+            <div class="sgd-row">
+              <div class="sgd-g-6">
                 <h2>The menu</h2>
 
                 <p>1. Go to content <a href="https://impact.prismic.io/documents/working/" target="_blank">page</a>.</p>
@@ -180,6 +203,30 @@
 
             <br><br>
             <div class="sgd-row">
+              <div class="sgd-g-6">
+                <h2>Add a new page -> Schema</h2>
+                <p>1. Go to content <a href="https://impact.prismic.io/documents/working/" target="_blank">page</a>.</p>
+                <p>2. top right corner click green button , "Create new"</p>
+                <p>3. Choose "Schema"</p>
+                <p>4.1. Type in "Name in url". This will be name shown 
+                <p>4.2. Type in Page title, this si the big title in the top of the page.
+                <p>5. Add day + sessions that day</p>
+                <p>6. Add day next day + session etc.</p>
+                <p>7. Top right corner, click "Save" -> "Publish" -> "Publish"</p>
+              </div>
+              
+              <div class="sgd-g-6">
+                <h2>&nbsp;</h2>
+                <video width="320" height="240" controls>
+                <source src="https://activetalents.se/waterslowenhielm/impact/videos/page-schema-1.webm" type="video/webm">
+                Your browser does not support the video tag.
+                </video>
+              </div>
+            
+            </div>
+
+            <br><br>
+            <div class="sgd-row">
               <div class="sgd-g-12">
                 <h2>Preview your changes</h2>
               </div>
@@ -192,7 +239,6 @@
                 <p>5. New tab will open and load your page with the changes.</p>
                 <p>6. Close tab after checking</p>
                 <p>7. Top right corner, click "Publish" -> "Publish"</p>
-                
               </div>
               
               <div class="sgd-g-6">
