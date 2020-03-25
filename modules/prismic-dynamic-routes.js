@@ -32,14 +32,12 @@ export default async function asyncModule (context, error, req) {
 		const prismicSchemaRes = await api.query([
 	        Prismic.Predicates.at('document.type', 'schema')
 	    ])
-	    const prismicSchema = prismicContactRes.results.map((cont) => {
-		    return '/'+cont.uid
+	    const prismicSchema = prismicSchemaRes.results.map((cont) => {
+		    return '/schema/'+cont.uid
 		})
 
 		const routes_1 = prismicContent.concat(prismicContact)
 		const routes = routes_1.concat(prismicSchema)
-
-		console.log(routes);
 	    
 	    fse.outputJSON('./_data/prismic-routes.json', routes, { spaces: 4 })
 
