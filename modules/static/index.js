@@ -39,6 +39,11 @@ module.exports = function (moduleOptions) {
   }
 
   this.nuxt.hook('generate:page', async page => {
+
+    console.log('- - - - - ');
+    console.log('module/static/index - hook/generate:page');
+    console.log('- - - - - ');
+
     if (!this.nuxt.options.generate.subFolders) {
       throw new Error('generate.subFolders should be true for @nuxt/static')
     }

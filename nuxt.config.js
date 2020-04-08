@@ -31,12 +31,7 @@ module.exports = {
       { rel: 'icon', type: 'image/png', size: '16x16', href: '/favicon-16x16.png' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Anton&display=swap' }
-    ],
-    script: [
-        { src: '//static.cdn.prismic.io/prismic.js?repo=impact&new=true', type: 'text/javascript', defer: true, async: true }
-    ],
-    __dangerouslyDisableSanitizers: ['script']
-
+    ]
   },
 
   /*
@@ -55,27 +50,25 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-  '~/plugins/link-resolver.js',
-  '~/plugins/html-serializer.js',
-  '~/plugins/prismic-vue.js',
   '~/components/index',
   '~/plugins/svg4everybody'
   ],
 
-  /*
-  ** Nuxt.js modules
+   /*
+  ** Nuxt.js Build Modules
   */
-  modules: [
-    //'modules/debug-nuxt-hooks',
-    '@/modules/prismic-dynamic-routes',
-    // '@/modules/static',
-    // '@/modules/crawler',
-    // '@nuxtjs/prismic',
-    '@nuxtjs/axios',
+  buildModules: [
+    '@/modules/crawler',
+    '@/modules/static',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
+    // '@nuxtjs/eslint-module',
     ['@nuxtjs/dotenv', { systemvars: true }],
     ['nuxt-gmaps', { key: process.env.GMAPS_KEY }]
+  ],
+
+   modules: [
+    '@nuxtjs/prismic'
   ],
 
   prismic: {
@@ -96,10 +89,6 @@ module.exports = {
   },
 
 
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
-
   // router: {
   //   base: '/wip/'
   // },
@@ -108,10 +97,10 @@ module.exports = {
   ** Generate
   */
 
-  generate: {
-    routes: dynamicRoutes,
-    fallback: '404.html'
-  },
+  // generate: {
+  //   routes: dynamicRoutes,
+  //   fallback: '404.html'
+  // },
 
   /*
 
@@ -121,11 +110,13 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-       config.resolve.alias['vue'] = 'vue/dist/vue.common'
-    }
+    // extend(config, ctx) {
+    //    config.resolve.alias['vue'] = 'vue/dist/vue.common'
+    // }
+
   }
 }

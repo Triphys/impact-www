@@ -1,5 +1,5 @@
 <template>
-  <div class="impact-page-content impact-page" :data-wio-id="documentId">
+  <div class="impact-page-content impact-page">
    
     <!-- HEADER / PAGE TITLE -->
     <section class="page-impact-header" v-if="document.page_title[0].text">
@@ -23,8 +23,6 @@
 
 <script>
 
-import Prismic from "prismic-javascript"
-import PrismicConfig from "~/prismic.config.js"
 
 import siteSlices   from '~/components/site-slices.vue'
 
@@ -44,41 +42,20 @@ export default {
       sm: this.$store.getters.getSettingsData,
     }
   },
-  async asyncData({ params, error, req }) {
-    try{
 
-      // Query to get API object
-      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+  // @nuxt/prismic-nuxt
 
-      // Query to get dynmaic page content by UID
-      const post = await api.getByUID("content", params.uid)
-
-      // Returns data to be used in template
-      return {
-        document: post.data,
-        documentId: post.id,
-        slices: post.data.body
-      }
-    } catch (e) {
-      // Returns error page
-       error({ statusCode: 404, message: 'Page not found' })
-     }
-  },
-
-
-  // LATER - @nuxt/prismic-nuxt
-
-  // async asyncData({ params, $prismic, error}) {
+  async asyncData({ params, $prismic, error}) {
    
-  //   const prismicUID = await $prismic.api.getByUID("content", params.uid)
+    const prismicUID = await $prismic.api.getByUID("content", params.uid)
 
-  //   if (prismicUID) {
-  //     return { document: prismicUID.data, slices: prismicUID.data.body }
-  //   } else {
-  //     error({ statusCode: 404, message: 'Page not found' })
-  //   }
+    if (prismicUID) {
+      return { document: prismicUID.data, slices: prismicUID.data.body }
+    } else {
+      error({ statusCode: 404, message: 'Page not found' })
+    }
    
-  // }
+  }
 
 }
 </script>

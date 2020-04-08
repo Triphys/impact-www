@@ -17,9 +17,35 @@
     <div class="menu">
 
       <ul>
-      
-        <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu, '-active': item[2] === activeParentLink}" > 
 
+        
+
+        <li v-for="(item, index) in menuData" :key="'i-' + index" :class="{'-show': index === showSubMenu, '-active': index === activeParentLink}" >
+
+          <!-- {{item.primary.link.uid}} -->
+       
+          <template v-if="item.primary.link.link_type !== 'Any' ">
+            <span @click="cleanMenu()">
+              <prismic-link :field="item.primary.link">{{item.primary.label[0].text}}</prismic-link> 
+            </span>
+          </template>
+          <template v-else>
+
+            <div @click.prevent="toggleSubMenu(index)">{{item.primary.label[0].text}}</div>  
+
+            <ul class="sub" v-if="item.items" @click="closeMenu(index)">
+              <li v-for="(item, index) in item.items" :key="'i-' + index" > 
+                <prismic-link :field="item.link">{{item.sub_menu_link_label[0].text}}</prismic-link>
+              </li>
+            </ul>
+
+          </template>
+                     
+        </li>
+        
+      
+ <!--       <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu, '-active': item[2] === activeParentLink}" > 
+ 
           <template v-if="item[1] !== '/undefined'">
             <span @click="closeMenu()">
               <nuxt-link :to="item[1]">{{item[0]}}</nuxt-link>
@@ -39,7 +65,7 @@
             </ul>
           </template>
          
-        </li>
+        </li> -->
 
       </ul> 
 
@@ -49,6 +75,7 @@
       <a :href="sm.facebook_url[0].text" target="_blank"><svg-icon class="logo-icon" name="facebook" /></a>
       <a :href="sm.instagram_url[0].text" target="_blank"><svg-icon class="logo-icon" name="instagram" /></a> 
     </div>
+
 
   </div>
 
@@ -63,7 +90,7 @@ export default {
   name: 'site-header',
   data() {
     return {
-      showSubMenu: undefined,
+      showSubMenu: false,
       activeParentLink: false,
       noLogo: false, 
       sm: this.$store.getters.getSettingsData,
@@ -75,143 +102,55 @@ export default {
   },
   methods: {
 
-    menuInit(links){
+    // subLinkActive(){
 
-      let _links = links;
-      let url_uid = this.$route.params.uid
-
-      // The view model.
-      let vm = this;
-
-      _links.forEach(function(item,index) {
-
-        let _item = []
-        let _item_sub = []
-        let item_url = false
-        let item_text = item.primary.label[0].text
-        let item_id = index + 1
-        let item_uid = false
-
-        let _this_sub = false
-        let item_sub = false
-        let item_sub_text = false
-        let item_sub_url = false
-        let item_sub_id = false
-        let item_sub_id_parent = item_id
-        let item_sub_uid = false
-
-        if (item.primary.link.type === 'content') {
-          item_url = '/' + item.primary.link.type + '/' + item.primary.link.uid
-          item_uid = item.primary.link.uid
-        } else if (item.primary.link.type === 'contact') {
-          item_url = '/' + item.primary.link.uid
-          item_uid = item.primary.link.uid
-        } else if (item.primary.link.type === 'Media' || (item.primary.link.type === 'Web')) {
-          item_url = item.primary.link.url
-        } else {
-          item_url =  '/' + item.primary.link.type
-        }
-
-
-        // ITEM - Level 1
-        _item.push(item_text)
-        _item.push(item_url)
-        _item.push(item_id)
-        _item.push(item_sub)
-        _item.push(item_uid)
-
-
-        // SUB MENU
-        if (item.items[0] !== undefined) {
-
-          item_sub = item.items
-          item.items.forEach(function(item,index) {
-
-            _this_sub = []
-            item_sub_id = item_id + (index + 1)
-
-            if (item.link.type === 'content') {
-               item_sub_url = '/' + item.link.type + '/' + item.link.uid
-               item_sub_text = item.sub_menu_link_label[0].text
-               item_sub_uid = item.link.uid
-            } else if (item.link.type === 'contact') {
-              item_sub_url = item.link.uid
-              item_sub_uid = item.link.uid
-
-            } else if (item.link.link_type === 'Media' || (item.link.link_type === 'Web')) {
-              item_sub_url = item.link.url 
-              item_sub_text = item.sub_menu_link_label[0].text
-            } else {
-              item_sub_url =  '/' + item.link.type
-            }
-
-
-            // THIS (SUB ITEM)
-            _this_sub.push(item_sub_text)
-            _this_sub.push(item_sub_url)
-            _this_sub.push(item_sub_id)
-            _this_sub.push(item_sub_id_parent)
-            _this_sub.push(item_sub_uid)
-
-            // SUB ITEM
-            _item_sub.push(_this_sub)
-
-          });
-
-          // ITEM - Level 2
-          _item.push(_item_sub)
-
-        }
-
-        // TO MENU CLEAN
-        vm.menuClean.push(_item)
-
-      });
-
-    },
-    subLinkActive(){
-
-      let _links = this.menuClean;
+    //   let _links = this.menuClean;
       
-      // The view model.
-      let vm = this;
+    //   // The view model.
+    //   let vm = this;
 
-      setTimeout(() => {
+    //   setTimeout(() => {
 
-        let url_uid = this.$route.params.uid
+    //     let url_uid = this.$route.params.uid
 
-        _links.forEach(function(item,index) {
+    //     _links.forEach(function(item,index) {
 
-          let _items = item
+    //       let _items = item
 
 
-          // SUB MENU
-          if (item[1] === '/undefined') {
+    //       // SUB MENU
+    //       if (item[1] === '/undefined') {
 
-            _items[5].forEach(function(subitem,index) {
+    //         _items[5].forEach(function(subitem,index) {
 
-            //ACTIVE PARENT
-            if (url_uid === subitem[4]) {
+    //         //ACTIVE PARENT
+    //         if (url_uid === subitem[4]) {
            
-              vm.activeParentLink = subitem[3]
+    //           vm.activeParentLink = subitem[3]
              
-            } 
+    //         } 
 
-          });
+    //       });
 
-          }
+    //       }
     
-        });
+    //     });
 
 
-      }, 1000);
+    //   }, 1000);
 
       
+
+    // },
+    subLinkActive(id){
+      setTimeout(() => {
+        this.activeParentLink = id
+      }, 300);
 
     },
     onResize(event) {
       this.$store.commit("setMenu",false)
-      this.showSubMenu = 0
+      this.showSubMenu = false
     },
     toggleMobileMenu: function(){
       if (this.$store.getters.getMenu) {
@@ -219,32 +158,38 @@ export default {
       } else {
         this.isMenuOpen = true;
       }
-      this.showSubMenu = 0
+      this.showSubMenu = false
       this.$store.commit("setMenu",this.isMenuOpen)
     },
     toggleSubMenu: function(id){
         if (id === this.showSubMenu) {
-          this.showSubMenu = 0
+          this.showSubMenu = false
         } else {
           this.showSubMenu = id
         }
     },
-    closeMenu: function(){
+    closeMenu: function(id){
       
       setTimeout(() => this.$store.commit("setMenu",false), 300)
       setTimeout(() => this.activeParentLink = false, 290)
 
-      this.showSubMenu = 0
+      this.showSubMenu = false
+      this.subLinkActive(id)
+     
+    },
+    cleanMenu: function(){
+      
+      this.showSubMenu = false
+      this.$store.commit("setMenu",false)
 
-      this.subLinkActive()
+      this.subLinkActive(false)
      
     }
   },
   mounted() {
     window.addEventListener('resize', this.onResize)
-    this.menuInit(this.menuData)
     
-    this.subLinkActive()
+    //this.subLinkActive()
   }
 }
 </script>
@@ -567,10 +512,10 @@ export default {
 
       > ul {
         display: block;
-          > li > span a, 
-          > li > div {
-            padding: 4px 0 12px;           
-          }
+        > li > span a, 
+        > li > div {
+          padding: 4px 0 12px;           
+        }
       }
 
       li.-show {

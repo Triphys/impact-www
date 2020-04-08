@@ -4,12 +4,22 @@ import Middleware from './middleware'
 const hasStaticAsyncData = (Component) => Boolean(Component.options.asyncData) && Component.options.static !== false
 
 Middleware.nuxt_static = async ({ app, route }) => {
+
+  console.log('- - - - - ');
+  console.log('Middleware.nuxt_static');
+  console.log('- - - - - ');
+  
+  // console.log('getMatchedComponents -> ' + getMatchedComponents);
+
   // Ignore on server
   if (process.server) return
   // Ignore if not generated
   if (!process.static) return
 
   const Components = getMatchedComponents(route)
+
+console.log('Components -> ' + Components);
+
   Components.forEach(Component => {
     Component._payloads = Component._payloads || {}
     if (hasStaticAsyncData(Component)) {
