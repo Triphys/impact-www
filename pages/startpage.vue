@@ -107,8 +107,6 @@ export default {
       this.impSlidesWidth = this.impSlides.length * 100 + 'vw'
       this.impSlidesLength = this.impSlides.length
 
-      console.log(_slidesClean)
-
       // Start slider
       setTimeout(() => this.next(), 2000); 
 
