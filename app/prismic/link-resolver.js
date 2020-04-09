@@ -9,7 +9,7 @@ export default function (doc) {
   }
 
   if (doc.type === 'startpage') {
-    return '/'
+    return '/startpage'
   }
 
   if (doc.type === 'content') {
