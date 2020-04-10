@@ -54,7 +54,18 @@
         border: '-border-' + this.sliceRaw.primary.border__black_line_.toLowerCase() || false,
         pos: this.sliceRaw.primary.image_video_position.toLowerCase() === 'right' ?  true : false,
       }
-    }
+    },
+    mounted() {
+      if (process.client) {
+        if (document.querySelector('.nuxt-link-handler')){
+          document.querySelector('.nuxt-link-handler').classList.add("-debug-comp")
+          document.querySelector('.nuxt-link-handler').addEventListener('click', event => {
+            event.preventDefault()
+            this.$router.push(event.target.pathname)
+          })
+        }
+      }
+    },
   }
 
 </script>

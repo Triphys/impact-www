@@ -345,7 +345,18 @@ export default {
                   }
                 ],
     }
-  }
+  },
+  mounted() {
+      if (process.client) {
+        if (document.querySelector('.nuxt-link-handler')){
+          document.querySelector('.nuxt-link-handler').classList.add("-debug-comp")
+          document.querySelector('.nuxt-link-handler').addEventListener('click', event => {
+            event.preventDefault()
+            this.$router.push(event.target.pathname)
+          })
+        }
+      }
+    },
 }
 </script>
 
