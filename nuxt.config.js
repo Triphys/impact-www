@@ -97,10 +97,9 @@ module.exports = {
   ** Generate
   */
 
-  // generate: {
-  //   routes: dynamicRoutes,
-  //   fallback: '404.html'
-  // },
+  generate: {
+    fallback: '404.html'
+  },
 
   /*
 
