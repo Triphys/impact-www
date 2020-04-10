@@ -98,7 +98,7 @@ module.exports = {
   */
 
   generate: {
-    fallback: '404.html'
+    fallback: true
   },
 
   /*
