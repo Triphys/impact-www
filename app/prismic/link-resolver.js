@@ -28,7 +28,7 @@ export default function (doc) {
   //   return '/preview'
   // }
 
-  return '/'
+  return '/not-found'
 }
 
 
