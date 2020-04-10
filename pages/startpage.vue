@@ -106,6 +106,7 @@ export default {
       this.impSlides = _slidesClean
       this.impSlidesWidth = this.impSlides.length * 100 + 'vw'
       this.impSlidesLength = this.impSlides.length
+      this.impLogoColor = this.impSlides[this.impSlideIndex][1]
 
       // Start slider
       setTimeout(() => this.next(), 2000); 
