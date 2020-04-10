@@ -45,18 +45,7 @@ export default {
   },
   mounted() {
     window.addEventListener('resize', this.onResize)
-    this.deviceOrientation();
-
-    if (process.client) {
-      if (document.querySelector('.nuxt-link-handler')){
-        document.querySelector('.nuxt-link-handler').addEventListener('click', event => {
-          event.preventDefault()
-          this.$router.push(event.target.pathname)
-        })
-      }
- 
-    }
-  
+    this.deviceOrientation();  
   },
   created() {
     

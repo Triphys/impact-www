@@ -188,9 +188,19 @@ export default {
   },
   mounted() {
     window.addEventListener('resize', this.onResize)
-    
-    //this.subLinkActive()
-  }
+
+    if (process.client) {
+      if (document.querySelector('.nuxt-link-handler')){
+        document.querySelector('.nuxt-link-handler').classList.add("yo")
+        document.querySelector('.nuxt-link-handler').addEventListener('click', event => {
+          event.preventDefault()
+          this.$router.push(event.target.pathname)
+        })
+      }
+ 
+    }
+  
+  },
 }
 </script>
 
