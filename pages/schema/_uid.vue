@@ -14,14 +14,20 @@
 
     <div class="gc ">
       <div class="g-12 day-layout">
+        <div>
+          <!-- SLICES / CONTENT - - From Prismic -->
+          <div v-for="(slice, index) in slices" :key="'slice-' + index">
 
-      <!-- SLICES / CONTENT - - From Prismic -->
-      <site-slices :slicesRaw="slices"/>
-        
+            <!-- DAY -->
+            <template v-if="slice.slice_type === 'day'">
+              <slice-day :sliceRaw="slice"/>
+            </template>
+
+          </div>
+        </div>
       </div>  
     </div>
       
-
 
     <!-- FOOTER - SITE -->  
     <site-footer />
@@ -31,13 +37,13 @@
 
 <script>
 
-import siteSlices   from '~/components/site-slices.vue'
+import sliceDay  from '~/components/slices/impact-day.vue'
 
 export default {
   name: 'impact-page-schema',
   transition: 'custom',
   components: {
-    siteSlices
+    sliceDay
   },
   head () {
     return {
