@@ -20,7 +20,7 @@ export default function (doc) {
     return `/schema/${doc.uid}`
   }
 
- if (doc.type === 'contact') {
+  if (doc.type === 'contact') {
     return `/${doc.uid}`
   }
 

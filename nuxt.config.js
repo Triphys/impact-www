@@ -88,7 +88,6 @@ module.exports = {
     input: '~/assets/icons/'
   },
 
-
   // router: {
   //   base: '/wip/'
   // },
@@ -97,9 +96,9 @@ module.exports = {
   ** Generate
   */
 
- // generate: {
- //    fallback: '404.html' // Netlify reads a 404.html, Nuxt will load as an SPA
- //  },
+  // generate: {
+  //    fallback: '404.html' // Netlify reads a 404.html, Nuxt will load as an SPA
+  //  },
 
   /*
   ** Build configuration
