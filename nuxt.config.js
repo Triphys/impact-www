@@ -73,8 +73,8 @@ module.exports = {
 
   prismic: {
     endpoint: process.env.PRISMIC_API,
-    linkResolver: '@/plugins/link-resolver',
-    htmlSerializer: '@/plugins/html-serializer',
+    // linkResolver: '@/plugins/link-resolver',
+    // htmlSerializer: '@/plugins/html-serializer',
     preview: '/preview/'
   },
 
