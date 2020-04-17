@@ -294,7 +294,7 @@ export default {
     width: 100%;
     overflow: scroll;
     opacity: 1;
-    background-color: rgba(255,227,0,1);
+    background-color: rgba(255,227,0,.78);
     padding: 10px 24px 24px;
     text-align: center;
     transition: background-color .275s ease-out .275s;
@@ -381,7 +381,7 @@ export default {
 
   &.-no-logo {
     .menu {
-      background-color: rgba(255,227,0,0);
+      //background-color: rgba(255,227,0,0);
       transition: all .275s ease-out ;
 
       ul a, 
@@ -451,9 +451,10 @@ export default {
         opacity: 0;
       }
       .menu {
-        background-color: rgba(255,227,0,0);
+       background-color: rgba(255,227,0,1);
+       padding: 14px 28px 14px;
         li.-show ul.sub{
-          background-color: rgba(255,227,0,0);
+        //  background-color: rgba(255,227,0,0);
         }
       }
     }
