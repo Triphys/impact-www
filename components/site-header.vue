@@ -501,6 +501,7 @@ export default {
     }
 
     .menu {
+      background-color: rgba(255,227,0,1);
       overflow: visible;
       height: auto;
       display: block;
