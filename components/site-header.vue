@@ -1,8 +1,8 @@
 <template>
 
-  <div class="site-header" :class="{'-no-logo' :this.$route.name === 'startpage'}">
+  <div class="site-header" :class="{'-no-logo' :this.$route.name === 'index'}">
 
-    <nuxt-link :to="'/startpage'" class="logo-link">
+    <nuxt-link :to="'/'" class="logo-link">
       <svg-icon class="logo" name="impact" @click="closeMenu()"/>
     </nuxt-link>
 
@@ -42,30 +42,7 @@
           </template>
                      
         </li>
-        
-      
- <!--       <li v-for="(item, index) in menuClean" :key="'i-' + index" :class="{'-show': item[2] === showSubMenu, '-active': item[2] === activeParentLink}" > 
- 
-          <template v-if="item[1] !== '/undefined'">
-            <span @click="closeMenu()">
-              <nuxt-link :to="item[1]">{{item[0]}}</nuxt-link>
-            </span>
-          </template>
-          <template v-else >
-            <div @click.prevent="toggleSubMenu(item[2])">{{item[0]}}</div>
-          </template>
 
-          <template v-if="item[5]">
-            <ul class="sub">
-              <li v-for="(subitem, index) in item[5]" :key="'i-' + index" >
-                <span @click="closeMenu()">
-                  <nuxt-link :to="subitem[1]" >{{subitem[0]}}</nuxt-link>
-                </span>
-              </li>
-            </ul>
-          </template>
-         
-        </li> -->
 
       </ul> 
 
@@ -102,46 +79,6 @@ export default {
   },
   methods: {
 
-    // subLinkActive(){
-
-    //   let _links = this.menuClean;
-      
-    //   // The view model.
-    //   let vm = this;
-
-    //   setTimeout(() => {
-
-    //     let url_uid = this.$route.params.uid
-
-    //     _links.forEach(function(item,index) {
-
-    //       let _items = item
-
-
-    //       // SUB MENU
-    //       if (item[1] === '/undefined') {
-
-    //         _items[5].forEach(function(subitem,index) {
-
-    //         //ACTIVE PARENT
-    //         if (url_uid === subitem[4]) {
-           
-    //           vm.activeParentLink = subitem[3]
-             
-    //         } 
-
-    //       });
-
-    //       }
-    
-    //     });
-
-
-    //   }, 1000);
-
-      
-
-    // },
     subLinkActive(id){
       setTimeout(() => {
         this.activeParentLink = id
@@ -187,6 +124,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$route);
     window.addEventListener('resize', this.onResize)
   },
 }
@@ -251,11 +189,20 @@ export default {
       }
 
     }
+
+
   }
 
   &.-no-logo {
     .logo {
       opacity: 0;
+    } 
+    .menu-toggle {
+      .burger {
+        span {
+          background: $yellow;
+        }
+      }  
     }
   }
 
@@ -294,7 +241,7 @@ export default {
     width: 100%;
     overflow: scroll;
     opacity: 1;
-    background-color: rgba(255,227,0,.78);
+    background-color: rgba(255,227,0,1);
     padding: 10px 24px 24px;
     text-align: center;
     transition: background-color .275s ease-out .275s;
@@ -381,7 +328,7 @@ export default {
 
   &.-no-logo {
     .menu {
-      //background-color: rgba(255,227,0,0);
+      background-color: rgba(255,227,0,0);
       transition: all .275s ease-out ;
 
       ul a, 
@@ -412,6 +359,7 @@ export default {
     .menu-toggle {
       .burger {
         span {
+          color: $black;
           &:nth-child(1) {
             width: 100%;
             transform: rotate(135deg);
@@ -430,6 +378,17 @@ export default {
         }
       }
      }
+
+
+     &.-no-logo {
+         .menu-toggle {
+          .burger {
+            span {
+              background: $black;
+            }
+          }  
+        }
+      }
 
 
 
@@ -451,13 +410,42 @@ export default {
         opacity: 0;
       }
       .menu {
-       background-color: rgba(255,227,0,1);
+       background-color: rgba(255,227,0,0);
        padding: 14px 28px 14px;
         li.-show ul.sub{
-        //  background-color: rgba(255,227,0,0);
+          background-color: rgba(255,227,0,0);
+        }
+        ul a, 
+        ul div {
+            color: $yellow;
+            &:hover {
+              color: darken($yellow, 10);
+            }
+          }
+       }
+
+
+      .social-links {
+     
+        svg {
+          fill: $yellow;
+          transition: all .275s ease-in-out;
+        }
+        a {
+          display: inline-block;
+          &:hover {
+            svg {
+              fill: darken($yellow, 10);
+            }
+          }
         }
       }
-    }
+
+
+
+
+      }
+
    
     .social-links {
       display: block;

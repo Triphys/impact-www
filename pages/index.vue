@@ -1,9 +1,8 @@
 <template>
-  <div class="p-placeholder">
+  <div class="impact-page-startpage " :class="[ '-slide-' + this.impSlideIndex, {'-logo-yellow' : impLogoColor, '-logo-black' : !impLogoColor, '-slide-last' : this.impSlideLast}]">
 
-    <div class="flex">
-     <div class="impact-wrapper">
-
+    <!-- LOGO - BIG CENTERED -->
+    <div class="impact-wrapper"> 
       <figure>
         <svg version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              width="172px" height="49px" viewBox="0 0 172 49" style="enable-background:new 0 0 172 49;" xml:space="preserve">
@@ -25,98 +24,203 @@
           </g>
         </svg>
       </figure>
-
-      <div class="impact-text">
-        <h2 class="text-h2">Hemsidan under konstruktion. <br>
-          Schema och info finns p&aring; Facebook. <br>
-          F&ouml;lj oss p&aring; Facebook och Instagram.</h2>
-      </div>
-
-      <div class="impact-sm">
-        
-        <a href="https://www.facebook.com/impactgymse/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a> 
-
-        
-        <a href="https://www.instagram.com/impactgym.se/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21.231 0h-18.462c-1.529 0-2.769 1.24-2.769 2.769v18.46c0 1.531 1.24 2.771 2.769 2.771h18.463c1.529 0 2.768-1.24 2.768-2.771v-18.46c0-1.529-1.239-2.769-2.769-2.769zm-9.231 7.385c2.549 0 4.616 2.065 4.616 4.615 0 2.549-2.067 4.616-4.616 4.616s-4.615-2.068-4.615-4.616c0-2.55 2.066-4.615 4.615-4.615zm9 12.693c0 .509-.413.922-.924.922h-16.152c-.511 0-.924-.413-.924-.922v-10.078h1.897c-.088.315-.153.64-.2.971-.05.337-.081.679-.081 1.029 0 4.079 3.306 7.385 7.384 7.385s7.384-3.306 7.384-7.385c0-.35-.031-.692-.081-1.028-.047-.331-.112-.656-.2-.971h1.897v10.077zm0-13.98c0 .509-.413.923-.924.923h-2.174c-.511 0-.923-.414-.923-.923v-2.175c0-.51.412-.923.923-.923h2.174c.511 0 .924.413.924.923v2.175z" fill-rule="evenodd" clip-rule="evenodd"/></svg></a>
-
-      </div>
-
     </div>
-  </div>
+
+    <!-- SLIDER - BACKGROUND -->
+    <div class="impact-slider">
+      <div class="slider-body" :style="{ width: `${impSlidesWidth}`, left: `${impSlidePosition}` }">
+        <div class="slide" v-for="(slide,index) in impSlides" :key="index" >
+          <figure class="the-image" v-if="slide[1]"  :style="{ backgroundImage: `url(${slide[0]})` }"></figure>
+        </div>      
+      </div>
+    </div>
 
   </div>
 </template>
 
 <script>
-  export default {
-     layout: 'placeholder'
+
+
+export default {
+  name: 'impact-startpage',
+  transition: 'custom',
+  data() {
+    return {
+      impSlidesOld: false,
+      impSlideIndex: 0,
+      impSlidePosition: 0,
+      impSlidesWidth: 0,
+      impSlides: [],
+      impSlidesLength: 0,
+      impLogoColor: true,
+      impSlideLast: false,
+    }
+  },
+
+
+  // @nuxt/prismuc-nuxt  
+
+  async asyncData({ $prismic, error }) {
+   
+    const prismicStartpage = await $prismic.api.getSingle("startpage")
+
+    if (prismicStartpage) {
+      return { slides: prismicStartpage.data.body[0].items }
+    } else {
+      error({ statusCode: 404, message: 'Page not found' })
+    }
+   
+  },
+  methods: {
+
+    sliderSetup(slides){
+
+      let clone = false;
+      let _slides = slides;
+      let _slidesClean = [];
+
+      // The view model.
+      let vm = this;
+
+      _slides.forEach(function(item,index) {
+
+        let _item = []
+        let item_url = item.slide_image.url
+        let item_color = true
+
+        if (item_url === undefined) {
+          item_color = false
+        }
+
+        _item.push(item_url)
+        _item.push(item_color)
+
+        vm.impSlides.push(_item)
+        _slidesClean.push(_item)
+
+      });
+
+      clone = _slidesClean[0]
+      _slidesClean.push(clone)
+
+      this.impSlides = _slidesClean
+      this.impSlidesWidth = this.impSlides.length * 100 + 'vw'
+      this.impSlidesLength = this.impSlides.length
+      this.impLogoColor = this.impSlides[this.impSlideIndex][1]
+
+      // Start slider
+      setTimeout(() => this.next(), 2000); 
+
+    },
+
+    next(){
+      
+      // Slide index up one
+      this.impSlideIndex++
+
+      // Slider array length
+      let sl = this.impSlidesLength - 1 
+
+      // Setting 
+      this.impLogoColor = this.impSlides[this.impSlideIndex][1]
+      
+      if (this.impSlideIndex  === sl) {
+        this.impSlidePosition = this.impSlideIndex * -100 + 'vw'
+
+        // Removing "transition" and movie Slider to start postion. 
+        setTimeout(() => {
+          this.impSlideLast = true
+          this.impSlidePosition = '0vw'
+        }, 2500);
+
+        this.impSlideIndex = 0   
+        setTimeout(() => this.next(), 3000);  
+
+      } else {
+        this.impSlideLast = false
+        this.impSlidePosition = this.impSlideIndex * -100 + 'vw'
+        setTimeout(() => this.next(), 3000); 
+      }
+          
+    }
+       
+  },
+  mounted () {
+   this.sliderSetup(this.slides);
   }
+
+}
 </script>
 
+
 <style lang="scss">
-    .p-placeholder {
-         font-family: Impact, Haettenschweiler, Franklin Gothic Bold, Charcoal, Helvetica Inserat, Bitstream Vera Sans Bold, Arial Black, sans serif;
+
+  .impact-page-startpage{
+    height: 100vh;
+    overflow: hidden;
+
+    &.-logo-yellow {
+      .impact-wrapper svg {
+        fill: $yellow;
+      }
     }
 
+    &.-logo-black {
+      .impact-wrapper svg {
+        fill: $black;
+      }
+    }
 
-    body {
+    &.-slide-last  {
+      .impact-slider .slider-body {
+        transition: none!important
+      }      
+    }
+
+    .impact-slider {
+      overflow: hidden;
+      position: fixed;
       background: $yellow;
-      background-size: cover;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-   
+      top: 0;
+      width: 100vw;
+      left: 0;
+      height: 100vh;
+      z-index: 1;
+      .slider-body {
+        position: relative;
+        transition: all 675ms ease-in-out; 
+      }
+      .slide {
+        width: 100vw;
+        height: 100vh;
+        float: left;
+      }
+      .the-image {
+        width: 100vw;
+        height: 100vh;
+        background-position: center center;
+        background-size: cover;
+      }
     }
 
-    * {
-      box-sizing: border-box;
-    }
-    
-    .flex {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding-bottom: 32px
-    }
     .impact-wrapper {
       width: 86vw;
       max-width: 920px;
       min-width: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      padding: 6vh 24px;
-      flex-direction: column;
+      padding: 0 24px 10vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 2;
     }
+
     .impact-wrapper svg{
       fill: #000;
       width: 90%;
       height: auto;
-    }
-    .impact-text {
-      text-align: center;
-    }
-    .impact-sm {
-      flex-direction: row;
-    }
-
-    .impact-sm a {
-      flex-shrink: 0;
-      padding: 0 8px;
-    }
-
-    .impact-sm a:hover svg  {
-      fill:$grey;
-    }
-
-    .impact-sm svg {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      max-width: 690px;
+      transition: fill 675ms ease-out;
     }
 
     figure {
@@ -124,36 +228,25 @@
       text-align: center;
       width: 100%;
       margin: 0;
-     
-    }
-    h2.text-h2 {
-      margin-bottom: 22px;
-      font-size: 18px;
-      margin: .7em 0 1.2em;
-      line-height: 1.256;
-    }
-    
-    @media screen and (min-width: 480px)  {
-      h2.text-h2 {
-        font-size: 22px;
-      }
     }
 
-    @media screen and (min-width: 600px)  {
-      h2.text-h2 {
-        font-size: 26px;
-      }
+    @include VP1024 {
+      
+        .logo-link{
+          display: none;
+        }
+
+        .impact-wrapper svg{
+          transition: fill 1000ms ease-out;
+        }
+        .impact-slider {
+          .slider-body {
+            transition: all 1000ms ease-in-out;
+          }
+        }
+      
     }
 
-    @media screen and (min-width: 768px)  {
-      h2.text-h2 {
-        font-size: 30px;
-      }
-      .impact-sm svg {
-        width: 48px;
-        height: 48px;
-      }
-    }
-
+  }
 
 </style>
