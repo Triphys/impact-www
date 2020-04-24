@@ -15,14 +15,8 @@
     </div>
 
     <div class="menu">
-
       <ul>
-
-        
-
         <li v-for="(item, index) in menuData" :key="'i-' + index" :class="{'-show': index === showSubMenu, '-active': index === activeParentLink}" >
-
-          <!-- {{item.primary.link.uid}} -->
        
           <template v-if="item.primary.link.link_type !== 'Any' ">
             <span @click="cleanMenu()">
@@ -31,27 +25,21 @@
           </template>
           <template v-else>
 
-            <template v-if="item.primary.label[0].text">
               <div @click.prevent="toggleSubMenu(index)">{{item.primary.label[0].text}}</div> 
-            </template>
-             
 
-            <ul class="sub" v-if="item.items" @click="closeMenu(index)">
+              <ul class="sub" v-if="item.items" @click="closeMenu(index)">
               <li v-for="(item, index) in item.items" :key="'i-' + index" >
-                <template v-if)="item.sub_menu_link_label[0].text">
+
+               <template v-if="item.sub_menu_link_label.length > 0">
                   <prismic-link :field="item.link">{{item.sub_menu_link_label[0].text}}</prismic-link>
                 </template>
-                
+              
               </li>
             </ul>
-
-          </template>
-                     
+          
+          </template>    
         </li>
-
-
       </ul> 
-
     </div>
 
     <div class="social-links">
@@ -409,7 +397,7 @@ export default {
 
   }
 
-  @include VP1024 {
+  @include VP1280 {
 
     &.-no-logo {
       .logo-link {
