@@ -549,8 +549,8 @@ export default {
   @include VP1280 {
 
     .logo {
-      width: 240px;
-      height: 79px;
+      width: 180px;
+      height: 60px;
     }
 
     .menu {
@@ -559,6 +559,17 @@ export default {
 
   }
 
+   @include VP1368 {
+
+    .logo {
+      width: 240px;
+      height: 79px;
+    }
+
+  }
+
 }
+
+
 
 </style>
