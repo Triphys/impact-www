@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div v-for="(slice, index) in slices" :key="'slice-' + index">
+    <div v-for="(slice, index) in slicesRaw" :key="'slice-' + index">
 
       <!-- {{slice}} -->
       <!-- {{slice.slice_type}} -->
@@ -81,11 +81,6 @@ export default {
     sliceText,
     sliceImageText,
     sliceDay
-  },
-  data () {
-    return {
-      slices: this.slicesRaw
-    };
   }
 
 };
