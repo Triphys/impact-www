@@ -14,15 +14,14 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/prismic": "^1.1.0",
+    "@nuxtjs/prismic": "^1.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/svg-sprite": "^0.4.7",
     "cross-env": "^5.2.0",
     "nuxt": "^2.11.0",
     "nuxt-gmaps": "^1.1.7",
-    "prismic-javascript": "^2.1.5",
-    "prismic-vue": "^2.0.0",
     "svg4everybody": "^2.1.9"
+
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
