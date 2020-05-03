@@ -60,7 +60,7 @@ module.exports = {
   modules: [ [
     '@/modules/crawler',
     '@/modules/static',
-    '@nuxtjs/prismic'
+    '@nuxtjs/prismic',
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
     // '@nuxtjs/eslint-module',
