@@ -28,6 +28,7 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+  name: 'NotFound',
   head () {
     return {
       title: '404 - There is no page here!'

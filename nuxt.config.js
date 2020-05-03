@@ -54,12 +54,13 @@ module.exports = {
   '~/plugins/svg4everybody'
   ],
 
-   /*
-  ** Nuxt.js Build Modules
+  /*
+  ** Nuxt.js modules
   */
-  buildModules: [
+  modules: [ [
     '@/modules/crawler',
     '@/modules/static',
+    '@nuxtjs/prismic'
     '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
     // '@nuxtjs/eslint-module',
@@ -67,14 +68,10 @@ module.exports = {
     ['nuxt-gmaps', { key: process.env.GMAPS_KEY }]
   ],
 
-   modules: [
-    '@nuxtjs/prismic'
-  ],
-
   prismic: {
     endpoint: process.env.PRISMIC_API,
-    // linkResolver: '@/plugins/link-resolver',
-    // htmlSerializer: '@/plugins/html-serializer',
+    linkResolver: '@/plugins/link-resolver',
+    htmlSerializer: '@/plugins/html-serializer',
     preview: '/preview/'
   },
 
@@ -96,9 +93,9 @@ module.exports = {
   ** Generate
   */
 
-  // generate: {
-  //    fallback: '404.html' // Netlify reads a 404.html, Nuxt will load as an SPA
-  //  },
+  generate: {
+    fallback: '404.html' // Netlify reads a 404.html, Nuxt will load as an SPA
+  },
 
   /*
   ** Build configuration
@@ -109,7 +106,8 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-       config.resolve.alias['vue'] = 'vue/dist/vue.common'
+      // to transform link with <nuxt-link> for the htmlSerializer
+      config.resolve.alias['vue'] = 'vue/dist/vue.common'
     }
 
   }

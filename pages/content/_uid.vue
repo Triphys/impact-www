@@ -77,7 +77,7 @@ import sliceDay  from '~/components/slices/impact-day.vue'
 // import siteSlices   from '~/components/site-slices.vue'
 
 export default {
-  name: 'impact-page-content',
+  name: 'content',
   transition: 'custom',
   components: {
     // siteSlices,
