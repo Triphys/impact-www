@@ -1,3 +1,4 @@
+
 <template>
   <div class="impact-page-content impact-page">
    
@@ -101,13 +102,13 @@ export default {
 
   // @nuxt/prismic-nuxt
 
-  async asyncData({ params, $prismic, error}) {
+  async asyncData({ $prismic, params, error}) {
    
-    const prismicUID = await $prismic.api.getByUID("content", params.uid)
-
-    if (prismicUID) {
+    try{
+      // Query to get post content
+      const prismicUID = await $prismic.api.getByUID("content", params.uid)
       return { document: prismicUID.data, slices: prismicUID.data.body }
-    } else {
+    } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
     }
    
