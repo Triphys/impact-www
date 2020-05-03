@@ -57,7 +57,7 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [ [
+  modules: [
     '@/modules/crawler',
     '@/modules/static',
     '@nuxtjs/prismic',
