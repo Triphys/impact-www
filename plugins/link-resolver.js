@@ -8,6 +8,7 @@ export default function (doc) {
     return '/not-found'
   }
 
+  // IMPACT
   if (doc.type === 'startpage') {
     return '/'
   }
@@ -24,11 +25,5 @@ export default function (doc) {
     return `/${doc.uid}`
   }
 
-  // if (doc.type === 'preview') {
-  //   return '/preview'
-  // }
-
   return '/not-found'
 }
-
-

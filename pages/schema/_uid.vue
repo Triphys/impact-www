@@ -2,7 +2,7 @@
   <div class="impact-page-content impact-page" >
    
     <!-- HEADER / PAGE TITLE -->
-    <section class="page-impact-header" v-if="document.page_title[0].text">
+    <section class="page-impact-header" v-if="document.page_title">
       <div class="gc">
         <div class="g-12 header">
           <h2 class="impact-header">
@@ -30,7 +30,7 @@
       
 
     <!-- FOOTER - SITE -->  
-    <site-footer />
+    <!-- <site-footer /> -->
 
   </div>
 </template>
@@ -58,13 +58,15 @@ export default {
 
   // @nuxt/prismic-nuxt
 
-  async asyncData({ params, $prismic, error}) {
+  async asyncData({ $prismic, params, error}) {
    
-    const prismicUID = await $prismic.api.getByUID("schema", params.uid)
+   
 
-    if (prismicUID) {
+    try {
+       const prismicUID = await $prismic.api.getByUID("schema", params.uid)
       return { document: prismicUID.data, slices: prismicUID.data.body }
-    } else {
+    
+    } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
     }
    

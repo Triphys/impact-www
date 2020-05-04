@@ -1,23 +1,12 @@
-const pkg = require('./package')
-const Prismic = require ('prismic-javascript')
-const PrismicConfig = require('./prismic.config')
 require('dotenv').config()
 
-
-// Needed for Netlify  $yarn run generate
-const dynamicRoutes =  () => {
-  const routes = require('./_data/prismic-routes.json')
-  return routes
-}
-
-
-module.exports = {
+export default {
   mode: 'universal',
 
   /*
   ** Headers of the page
   */
-  head: {
+    head: {
     title: 'Impact ',
     meta: [
       { charset: 'utf-8' },
@@ -69,10 +58,9 @@ module.exports = {
   ],
 
   prismic: {
-    endpoint: process.env.PRISMIC_API,
+    endpoint: 'https://impact.cdn.prismic.io/api/v2',
     linkResolver: '@/plugins/link-resolver',
     htmlSerializer: '@/plugins/html-serializer',
-    preview: '/preview/'
   },
 
   styleResources: {
@@ -85,23 +73,10 @@ module.exports = {
     input: '~/assets/icons/'
   },
 
-  // router: {
-  //   base: '/wip/'
-  // },
-
-  /*
-  ** Generate
-  */
-
-  generate: {
-    fallback: '404.html' // Netlify reads a 404.html, Nuxt will load as an SPA
-  },
-
   /*
   ** Build configuration
   */
   build: {
-    
     /*
     ** You can extend webpack config here
     */
@@ -109,6 +84,9 @@ module.exports = {
       // to transform link with <nuxt-link> for the htmlSerializer
       config.resolve.alias['vue'] = 'vue/dist/vue.common'
     }
+  },
 
+  generate: {
+    fallback: '404.html' // Netlify reads a 404.html, Nuxt will load as an SPA
   }
 }

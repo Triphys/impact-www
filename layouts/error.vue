@@ -1,6 +1,5 @@
-
 <template>
-    <div class="sgd-s-hero -error -cover -bg-pattern-light">
+    <div class="sgd-s-hero -error -cover">
       <div>
         <logo/>
 
@@ -44,6 +43,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="scss">

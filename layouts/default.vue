@@ -1,10 +1,12 @@
 <template>
+
   <div class="site-grid" :class="{'-menu-open': this.$store.getters.getMenu, '-portrait': this.orientation === 'p', '-landscape': this.orientation === 'l','-menu-navigate': this.$store.getters.getMenuNavigate,}">
-    
+
+
     <site-header />
 
     <nuxt />
-    
+
   </div>
 </template>
 
@@ -20,7 +22,6 @@ export default {
       ],
     }
   },
-
   data () {
     return {
       orientation: null,
@@ -47,10 +48,14 @@ export default {
     window.addEventListener('resize', this.onResize)
     this.deviceOrientation();  
   },
-  created() {
-    
+  async middleware({ store, $prismic }) {
+    await store.dispatch('fetchData', $prismic)
   }
+
 }
 
 </script>
+
+
+
 

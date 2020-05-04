@@ -3,6 +3,7 @@
   <div class="site-footer" :class="{'-hide' : this.$route.name === 'startpage'}">
 
    <div class="gc">
+    Footer
     <prismic-rich-text :field="footerData.data.footer_text"/>
    </div>  
 
@@ -12,8 +13,6 @@
 
 <script>
 
-import Prismic from "prismic-javascript"
-import PrismicConfig from "~/prismic.config.js"
 
 export default {
   name: 'site-footer',

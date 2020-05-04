@@ -118,7 +118,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route);
+    // console.log(this.$route);
     window.addEventListener('resize', this.onResize)
   },
 }

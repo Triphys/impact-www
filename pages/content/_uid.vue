@@ -18,8 +18,6 @@
     <div v-for="(slice, index) in slices" :key="'slice-' + index">
       <div>
 
-        <!-- *** CONTENT PAGETYPE *** -->
-
         <!-- HEADER -->
         <template v-if="slice.slice_type === 'content_-_heading'">
           <slice-heading :sliceRaw="slice"/>
@@ -59,7 +57,7 @@
     </div>
 
     <!-- FOOTER - SITE -->  
-    <site-footer />
+   <site-footer />
 
 
   </div>

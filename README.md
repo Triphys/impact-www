@@ -1,23 +1,17 @@
 # Impact
 
+## Launch this project in your local environment
 
-## Build Setup
+Run the following commands:
 
 ``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn run dev
-
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
+npm install
+npm run dev
 ```
+Then you can access it at [http://localhost:3000](http://localhost:3000).
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
-
-
+## Compile and minify for production and launch the server
+``` bash
+npm run build
+npm start
+```

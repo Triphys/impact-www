@@ -1,6 +1,5 @@
 
-import Prismic from "prismic-javascript"
-import PrismicConfig from "~/prismic.config.js"
+// import Prismic from "prismic-javascript"
 
 export const state = () => ({
   activeLink: 1,
@@ -50,28 +49,26 @@ export const mutations = {
 
 export const actions = {
   
-  async nuxtServerInit ({ commit }, { req }) {
+  async fetchData({ commit }, $prismic) {
 
-    //console.log('nuxtServerInit');
+    // Init -> layouts/default.vue
 
-    // Query to get API object
-      const api = await Prismic.getApi(PrismicConfig.apiEndpoint, {req})
+    try {
 
-    //Query to get content
-      const prismicSettings = await api.query(
-        Prismic.Predicates.at("document.type", "settings")
-      )
-      const prismicMenu = await api.query(
-        Prismic.Predicates.at("document.type", "menu")
-      )
-      const prismicFooter = await api.getSingle('footer')
+      //Query to get content
+      const prismicSettings = await $prismic.api.query($prismic.predicates.at('document.type', 'settings'))
 
-    commit('setMenuData', prismicMenu.results[0].data.body)
-    commit('setSettingsData', prismicSettings.results[0].data)
-    commit('setFooterData', prismicFooter)
+      const prismicMenu = await $prismic.api.query($prismic.predicates.at('document.type', 'menu'))
+      const prismicFooter = await $prismic.api.getSingle('footer') 
 
-    //console.log(prismicMenu.results[0].data.body);
-    //console.log(prismicSettings.results[0].data);
+      // Add to store
+      commit('setMenuData', prismicMenu.results[0].data.body)
+      commit('setSettingsData', prismicSettings.results[0].data)
+      commit('setFooterData', prismicFooter)
+
+    } catch (e) {
+      console.log('fetchData() - - - CATCH - - - ' , e);
+    }
 
   },
   setActiveLink(vuexContext, res) {
