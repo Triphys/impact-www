@@ -1,0 +1,60 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Name in URL"
+      }
+    },
+    "page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Page title"
+      }
+    },
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "day" : [ ]
+        },
+        "choices" : {
+          "day" : {
+            "type" : "Slice",
+            "fieldset" : "Day",
+            "description" : "Add a new day",
+            "icon" : "date_range",
+            "display" : "list",
+            "non-repeat" : {
+              "day" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading3",
+                  "label" : "Day"
+                }
+              }
+            },
+            "repeat" : {
+              "time" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "paragraph",
+                  "label" : "Time"
+                }
+              },
+              "session" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph",
+                  "label" : "Session"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

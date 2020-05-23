@@ -1,0 +1,170 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Name in URL"
+      }
+    },
+    "page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Page title"
+      }
+    },
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "header" : [ ],
+          "text" : [ ],
+          "content_-_heading" : [ ],
+          "image" : [ ],
+          "video" : [ ],
+          "image___text_" : [ ]
+        },
+        "choices" : {
+          "text" : {
+            "type" : "Slice",
+            "fieldset" : "Text",
+            "description" : "Text -> Bold, Italic and Lists",
+            "icon" : "text_fields",
+            "display" : "list",
+            "non-repeat" : {
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Text"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "content_-_heading" : {
+            "type" : "Slice",
+            "fieldset" : "Heading",
+            "description" : "Heading 2 (Large) or Heading 3 (Medium)",
+            "icon" : "text_fields",
+            "display" : "list",
+            "non-repeat" : {
+              "heading" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2, heading3, heading4",
+                  "label" : "Heading"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "image" : {
+            "type" : "Slice",
+            "fieldset" : "Image",
+            "description" : "Full width image (Can be a schema) ",
+            "icon" : "image",
+            "display" : "list",
+            "non-repeat" : {
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1080
+                  },
+                  "thumbnails" : [ {
+                    "name" : "tablet",
+                    "width" : 740,
+                    "height" : null
+                  }, {
+                    "name" : "mobile",
+                    "width" : 452,
+                    "height" : null
+                  } ],
+                  "label" : "Image"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "video" : {
+            "type" : "Slice",
+            "fieldset" : "Video",
+            "description" : "Full width video (link to youtube)",
+            "icon" : "ondemand_video",
+            "display" : "list",
+            "non-repeat" : {
+              "youtube" : {
+                "type" : "Embed",
+                "config" : {
+                  "label" : "Youtube"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "image___text_" : {
+            "type" : "Slice",
+            "fieldset" : "Image/Video + Text ",
+            "description" : "Image and text (side by side)",
+            "icon" : "view_column",
+            "display" : "list",
+            "non-repeat" : {
+              "border__black_line_" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "Bottom", "Top", "Both" ],
+                  "default_value" : "Bottom",
+                  "label" : "Border (Black line)"
+                }
+              },
+              "image_video_position" : {
+                "type" : "Select",
+                "config" : {
+                  "options" : [ "Left", "Right" ],
+                  "default_value" : "Left",
+                  "label" : "Image/Video position"
+                }
+              },
+              "header" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "heading2, hyperlink",
+                  "allowTargetBlank" : true,
+                  "label" : "header"
+                }
+              },
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, strong, em, hyperlink, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Text"
+                }
+              },
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 512
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "Image"
+                }
+              },
+              "youtube" : {
+                "type" : "Embed",
+                "config" : {
+                  "label" : "youtube"
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
+      }
+    }
+  }
+}

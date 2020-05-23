@@ -1,0 +1,54 @@
+{
+  "Main" : {
+    "page_name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label" : "Page name"
+      }
+    },
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "slide" : [ ]
+        },
+        "choices" : {
+          "slide" : {
+            "type" : "Slice",
+            "fieldset" : "Slide",
+            "description" : "Slide for startpage",
+            "icon" : "image",
+            "display" : "list",
+            "non-repeat" : { },
+            "repeat" : {
+              "slide_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1920
+                  },
+                  "thumbnails" : [ {
+                    "name" : "Desktop",
+                    "width" : 1280,
+                    "height" : null
+                  }, {
+                    "name" : "Tablet",
+                    "width" : 768,
+                    "height" : null
+                  }, {
+                    "name" : "Mobile",
+                    "width" : 480,
+                    "height" : null
+                  } ],
+                  "label" : "Slide image"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

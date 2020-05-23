@@ -1,0 +1,25 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Name in URL"
+      }
+    },
+    "page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Page title"
+      }
+    },
+    "adress" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, hyperlink",
+        "allowTargetBlank" : true,
+        "label" : "Adress"
+      }
+    }
+  }
+}

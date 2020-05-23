@@ -1,0 +1,49 @@
+{
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label" : "Title"
+      }
+    },
+    "facebook_url" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2",
+        "label" : "Facebook URL"
+      }
+    },
+    "instagram_url" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2",
+        "label" : "Instagram URL"
+      }
+    },
+    "seo_page_title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading4",
+        "label" : "SEO Page title",
+        "placeholder" : "Impactgym"
+      }
+    },
+    "seo_meta_keywords" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading4",
+        "label" : "SEO meta keywords",
+        "placeholder" : "Impact, gym, thaiboxning"
+      }
+    },
+    "seo_meta_description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading4",
+        "label" : "SEO meta description",
+        "placeholder" : "Short text about Impact gym ..."
+      }
+    }
+  }
+}
