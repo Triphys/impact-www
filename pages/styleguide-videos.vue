@@ -7,7 +7,7 @@
     <div class="sgd-s-hero">
       <div>
 
-        <svg-icon class="logo" name="impact" />
+    <!--     <svg-icon class="logo" name="impact" /> -->
 
         <h2 class="title">
          Videos
@@ -311,11 +311,11 @@
 
 <script>
 
-  import Logo from '~/components/Logo.vue'
+  // import Logo from '~/components/Logo.vue'
 
   export default {
     components: {
-      Logo
+      // Logo
     },
     layout: 'placeholder'
   }

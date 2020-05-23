@@ -122,8 +122,6 @@ export default {
       }
     }
 
-
-
     &.-border-bottom {
       .border-bottom {
         display: block;

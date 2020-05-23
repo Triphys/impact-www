@@ -47,7 +47,6 @@
       <a :href="sm.instagram_url[0].text" target="_blank"><svg-icon class="logo-icon" name="instagram" /></a> 
     </div>
 
-
   </div>
 
 </template>
