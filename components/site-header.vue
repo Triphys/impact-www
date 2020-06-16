@@ -28,14 +28,14 @@
               <div @click.prevent="toggleSubMenu(index)">{{item.primary.label[0].text}}</div> 
 
               <ul class="sub" v-if="item.items" @click="closeMenu(index)">
-              <li v-for="(item, index) in item.items" :key="'i-' + index" >
+                <li v-for="(item, index) in item.items" :key="'i-' + index" >
 
-               <template v-if="item.sub_menu_link_label.length > 0">
-                  <prismic-link :field="item.link">{{item.sub_menu_link_label[0].text}}</prismic-link>
-                </template>
-              
-              </li>
-            </ul>
+                  <template v-if="item.sub_menu_link_label.length > 0">
+                    <prismic-link :field="item.link">{{item.sub_menu_link_label[0].text}}</prismic-link>
+                  </template>
+                  
+                </li>
+              </ul>
           
           </template>    
         </li>
