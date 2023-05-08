@@ -17,7 +17,7 @@
     "@nuxtjs/svg-sprite": "^0.4.10",
     "cookies": "^0.8.0",
     "cross-env": "^7.0.2",
-    "nuxt": "^2.11.0",
+    "nuxt": "^2.16.3",
     "nuxt-gmaps": "^1.2.2",
     "prismic-javascript": "^2.1.5",
     "prismic-vue": "^2.0.0",
